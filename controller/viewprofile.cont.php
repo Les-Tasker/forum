@@ -1,30 +1,30 @@
 <?php
 function viewProfile()
 {
-    require_once "./includes/dbh.inc.php";
-    $author = $_GET['author'];
-    $sql = "SELECT * FROM users WHERE uidUsers = '$author'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $userid = $row['idUsers'];
-    $username = $row['uidUsers'];
-    $userimg = $row['imgUsers'];
-    $userbio = $row['bioUsers'];
-    $userfirst = $row['firstUsers'];
-    $userlast = $row['lastUsers'];
-    $usercampus = $row['campusUsers'];
-    $usercourse = $row['courseUsers'];
-    $userface = $row['faceUsers'];
-    $userlinked = $row['linkedUsers'];
-    $usertwit = $row['twitUsers'];
-    $userinsta = $row['instaUsers'];
+  require "./includes/dbh.inc.php";
+  $author = $_GET['author'];
+  $sql = "SELECT * FROM users WHERE uidUsers = '$author'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $userid = $row['idUsers'];
+  $username = $row['uidUsers'];
+  $userimg = $row['imgUsers'];
+  $userbio = $row['bioUsers'];
+  $userfirst = $row['firstUsers'];
+  $userlast = $row['lastUsers'];
+  $usercampus = $row['campusUsers'];
+  $usercourse = $row['courseUsers'];
+  $userface = $row['faceUsers'];
+  $userlinked = $row['linkedUsers'];
+  $usertwit = $row['twitUsers'];
+  $userinsta = $row['instaUsers'];
 
-    if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {?>
+  if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) { ?>
 
     <div class="profile-container">
 
 
-      <form action="includes/send-message.inc.php" method="post" id="send-message"  class="hidden">
+      <form action="includes/send-message.inc.php" method="post" id="send-message" class="hidden">
         <input type="hidden" name="fromUser" value="<?php echo $_SESSION['userId'] ?>">
         <input type="hidden" name="toUser" value="<?php echo $userid ?>">
         <textarea name="message-body" id="message-textarea" cols="40" rows="5"></textarea>
@@ -70,11 +70,11 @@ function viewProfile()
 
 
   <?php
-} else {?>
+  } else { ?>
     <div class="main-content-logout">
       <h1>You need to be logged in to view the forum</h1><br>
       <h1>If you have registered, please check your email to verify your account</h1><br><a href="signup.php">Click here to register</a>
     </div>
 <?php
-}
+  }
 }

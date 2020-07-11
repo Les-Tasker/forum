@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'dbh.inc.php';
+require 'dbh.inc.php';
 
 $id = $_SESSION['userId'];
 $uid = $_SESSION['userUid'];

@@ -1,5 +1,5 @@
 <?php
-require_once "./controller/header.cont.php";
+require "./controller/header.cont.php";
 session_start();
 ?>
 <!DOCTYPE html>
@@ -36,10 +36,10 @@ session_start();
 
 
                 <?php
-headerControl();
-?>
+                headerControl();
+                ?>
     </header>
     <div class="wrapper">
-    <div class="f-banner">
+        <div class="f-banner">
 
-    </div>
+        </div>

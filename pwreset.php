@@ -1,6 +1,6 @@
 <?php
 
-require_once 'header.php';
+require 'header.php';
 require "./controller/signup.cont.php";
 
 require "./includes/dbh.inc.php";

@@ -1,11 +1,11 @@
 <?php
 function indexSelect()
 {
-    require_once "./includes/dbh.inc.php";
+    require "./includes/dbh.inc.php";
 
     // Visible when logged in
     if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
-        ?>
+?>
 
 
 
@@ -16,7 +16,7 @@ function indexSelect()
                         <input type="text" class="form-control" name="search-string" placeholder="Search Topics" />
                         <div class="input-group-append">
                             <button name="search-submit" type="submit" class="btn btn-secondary">
-                            <img src="./img/search.png">                            </button>
+                                <img src="./img/search.png"> </button>
                         </div>
                     </div>
                 </form>

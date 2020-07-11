@@ -3,7 +3,7 @@
 
 
 if (isset($_POST['submit'])) {
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
     $vcode = $_POST['vcode'];
     $password = $_POST['password'];
     $passwordRepeat = $_POST['passwordrepeat'];
@@ -11,14 +11,18 @@ if (isset($_POST['submit'])) {
         header("Location: ../pwreset.php?error=password8");
     } elseif (!preg_match("#[0-9]+#", $password)) {
         header("Location: ../pwreset.php?error=passwordnum");
-    } elseif (!preg_match("#[A-Z]+#", $password)) {
+    }
+    elseif (!preg_match("#[A-Z]+#", $password)) {
         header("Location: ../pwreset.php?error=passwordcap");
-    } elseif (!preg_match("#[a-z]+#", $password)) {
+    }
+    elseif (!preg_match("#[a-z]+#", $password)) {
         header("Location: ../pwreset.php?error=passwordlow");
-    } else if ($password !== $passwordRepeat) {
+    }
+    else if ($password !== $passwordRepeat) {
         header("Location: ../pwreset.php?error=passwordcheck");
         exit();
-    } else {
+    }
+    else {
         $str = rand();
         $vcodereplace = hash("sha256", $str);
         $sql = "UPDATE users SET pwdUsers = ?, vcodeUsers = ? WHERE vcodeUsers = ?";

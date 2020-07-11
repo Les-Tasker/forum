@@ -2,7 +2,7 @@
 function search()
 {
 
-    require_once "includes/dbh.inc.php";
+    require "includes/dbh.inc.php";
     if (!empty($_POST['search-string'])) {
         // Visible when logged in
         if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {

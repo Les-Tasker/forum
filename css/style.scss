@@ -155,6 +155,13 @@ footer {
     font-weight: bolder;
   }
 }
+.unread {
+  background-color: #00970d;
+  display: inline-block;
+  font-size: 1rem !important;
+  padding: 1px 6px 0 5px;
+  border-radius: 5px;
+}
 .header-user-img {
   object-fit: contain;
   width: 70px;
@@ -636,6 +643,7 @@ footer {
 }
 #send-message {
   padding: 20px;
+
   textarea {
     padding: 20px;
     border-radius: 15px;
@@ -672,6 +680,39 @@ footer {
     &:hover {
       border: 1px solid #dadada;
       background-color: rgb(158, 27, 27);
+      transition: 0.5s ease;
+    }
+    &:active {
+      box-shadow: 1px 1px 5px #303030;
+    }
+  }
+}
+#reply-message {
+  padding: 20px;
+  margin: auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+
+  textarea {
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+  }
+  .message-submit {
+    margin: 10px 0 0 auto;
+    border-radius: 15px;
+    border: 1px solid $secondary-color;
+    background-color: $primary-color;
+    color: #fff;
+    width: 100px;
+    line-height: 30px;
+    transition: 0.5s ease;
+
+    &:hover {
+      border: 1px solid #dadada;
+      background-color: rgb(42, 158, 27);
       transition: 0.5s ease;
     }
     &:active {

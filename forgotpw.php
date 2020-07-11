@@ -1,6 +1,6 @@
 <?php
-require_once 'header.php';
-require_once './controller/signup.cont.php'
+require 'header.php';
+require './controller/signup.cont.php'
 ?>
 <div class="wrapper-main">
     <section class="section-default">
@@ -16,4 +16,4 @@ require_once './controller/signup.cont.php'
     </section>
 </div>
 <?php
-require_once 'footer.php';
+require 'footer.php';
