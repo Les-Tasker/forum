@@ -1,5 +1,5 @@
 <?php
 require "header.php";
-require "./controller/search.cont.php";
-search();
+require "model/forum.model.php";
+require "controller/search.cont.php";
 require 'footer.php';

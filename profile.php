@@ -1,7 +1,4 @@
 <?php
 require 'header.php';
-require './controller/profile.cont.php';
-
-profile();
-
+require 'view/profile.view.php';
 require 'footer.php';

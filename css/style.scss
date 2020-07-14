@@ -46,6 +46,7 @@ nav {
   font-weight: bold;
   padding: 0 20px;
 }
+
 .nav-link {
   color: $highlight-color !important;
   &:hover {
@@ -81,12 +82,17 @@ nav {
 }
 footer {
   height: 80px;
-  line-height: 80px;
   background-color: $primary-color;
   font-size: 1.2rem;
   width: 100%;
   text-align: center;
   margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  img {
+    width: 500px;
+    margin: auto;
+  }
 }
 .f-banner {
   background-image: url(../img/banner.gif);
@@ -352,6 +358,7 @@ footer {
 .login-input {
   display: flex;
   flex-direction: column;
+  margin-left: auto;
   input {
     margin-bottom: 2px;
     padding-left: 6px;
@@ -495,27 +502,42 @@ footer {
   flex-direction: row;
 }
 .profile-container {
-  border: 1px solid $secondary-color;
-  width: 80%;
+  width: 900px;
   border-radius: 15px;
   margin: 5vh auto;
   display: flex;
+  flex-direction: column;
+}
+.profile-banner {
+  img {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px 15px 0 0;
+  }
+}
+.profile-container-wrapper {
+  width: 100%;
+  display: flex;
   flex-direction: row;
   text-align: center;
-  background-color: $primary-color;
+  background-color: $background-color;
+  border-radius: 0 0 15px 15px;
 }
 .profile-container-left {
   width: 50%;
   padding: 40px 0;
+  background-color: $background-color;
 }
 .profile-container-right {
   width: 50%;
   padding: 40px 0;
   margin-right: 40px;
+  background-color: $background-color;
 }
 .profile-image-container {
-  position: sticky;
-  top: 0;
+  position: relative;
+  top: -165px;
+  left: 0;
   padding-top: 50px;
   width: 100%;
   text-align: center;
@@ -555,8 +577,18 @@ footer {
   width: 150px;
   height: 150px;
   margin: 0 auto;
+  border: 3px solid $text-color;
+  border-radius: 50%;
+  background-color: #fff;
 }
-
+.cover-img {
+  object-fit: contain;
+  width: 900px;
+  height: 300px;
+  margin: 0 auto;
+  border: 3px solid $text-color;
+  border-radius: 15px;
+}
 .profile-button-wrapper {
   display: flex;
   flex-direction: column;
@@ -622,7 +654,7 @@ footer {
   transition: 0.5s ease;
 }
 #send-user-message {
-  margin: auto;
+  margin: 0 auto 100px auto;
   border-radius: 15px;
   border: none;
   background-color: $primary-color;
@@ -739,6 +771,20 @@ footer {
   transition: 0.5s ease;
   color: #fff;
 }
+.upload-form2 {
+  position: absolute;
+  top: 0;
+  left: -500vw;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.904);
+  transition: 0.5s ease;
+  color: #fff;
+}
 
 .upload-form-inner {
   width: 500px;
@@ -764,12 +810,46 @@ footer {
   cursor: pointer;
 }
 #plus-icon {
-  height: 30px;
-  width: 30px;
-  margin-left: -35px;
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+  margin-left: -50px;
   margin-bottom: -119px;
   cursor: pointer;
-  background-color: $primary-color;
+  background-color: #000;
+  border-radius: 50%;
+  border: 3px solid $text-color;
+  transform: rotateZ(-360deg);
+  transition: 0.3s ease;
+  &:hover {
+    background-color: $highlight-color;
+    transform: rotateZ(360deg);
+    transition: 0.3s ease;
+  }
+}
+#cover-plus-icon {
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+  margin-left: -50px;
+  margin-bottom: -245px;
+  cursor: pointer;
+  background-color: #000;
+  border-radius: 50%;
+  border: 3px solid $text-color;
+  transform: rotateZ(-360deg);
+  transition: 0.3s ease;
+  z-index: 1;
+  &:hover {
+    background-color: $highlight-color;
+    transform: rotateZ(360deg);
+    transition: 0.3s ease;
+  }
+  &::after {
+    content: "TEst";
+    background-color: yellow;
+    color: red;
+  }
 }
 .animate {
   position: fixed;
@@ -1054,6 +1134,15 @@ blockquote {
     width: 100%;
     margin: auto;
   }
+  .navbar {
+    padding: 10px;
+  }
+  footer {
+    img {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
   /*Topic Content Mobile Styles*/
   /*Topic Content Mobile Styles*/
 
@@ -1123,8 +1212,22 @@ blockquote {
 
   /*Profile Page Mobile Styles*/
   /*Profile Page Mobile Styles*/
+  .profile-banner {
+    img {
+      width: 100%;
+      height: 33vw;
+      border-radius: 15px 15px 0 0;
+    }
+  }
+  .profile-container-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: $primary-color;
+    border-radius: 0 0 15px 15px;
+  }
   .profile-container {
-    border: none;
     width: 100%;
     flex-direction: column;
     .profile-container-left {
@@ -1148,6 +1251,19 @@ blockquote {
         input {
           margin: auto;
         }
+      }
+    }
+  }
+}
+.upload-form2 {
+  width: 100%;
+  margin: auto;
+  .upload-form-inner {
+    width: 100%;
+    margin: auto;
+    .profile-button-wrapper {
+      input {
+        margin: auto;
       }
     }
   }

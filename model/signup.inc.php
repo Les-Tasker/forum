@@ -39,7 +39,7 @@ if (isset($_POST['signup-submit'])) {
     $mail->SetFrom("No-Reply@SAE-Student-Forums.com");
 
     $mail->Subject = "SAE Student Forum";
-    $content = "<b><h1>Activate your SAE Student Forum account</h1><br><a href='http://localhost/Login/includes/verify.inc.php?uid=" . "$username" . "&email=" . "$email" . "&vcode=" . "$vcode" . "'>Click here to activate your account</a><br><h1>This sender does not support replies</h1></b>";
+    $content = "<b><h1>Activate your SAE Student Forum account</h1><br><a href='http://localhost/Login/model/verify.inc.php?uid=" . "$username" . "&email=" . "$email" . "&vcode=" . "$vcode" . "'>Click here to activate your account</a><br><h1>This sender does not support replies</h1></b>";
     $mail->MsgHTML($content);
     // Form error check / Validate via PHP empty function
     if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat) || empty($fname) || empty($lname) || empty($campus) || empty($course)) {
@@ -51,36 +51,47 @@ if (isset($_POST['signup-submit'])) {
         header("Location: ../signup.php?error=invalidmailuid");
         exit();
         // Email validation
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    }
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: ../signup.php?error=invalidmail&uid=" . $username . "&lname=" . $lname . "&fname=" . $lname . "&campus=" . $campus);
         exit();
         //To limit the userbase to only SAE students, we check for a valid string that only sae students have in their student email
-    } else if (!preg_match("/@saeinstitute/", $email)) {
+    }
+    else if (!preg_match("/@saeinstitute/", $email)) {
         header("Location: ../signup.php?error=invalidmail&mail=" . $username . "&lname=" . $lname . "&fname=" . $lname . "&campus=" . $campus);
         exit();
         // Username validation Regex
-    } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+    }
+    else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         header("Location: ../signup.php?error=invaliduid&mail=" . $email . "&lname=" . $lname . "&fname=" . $lname . "&campus=" . $campus);
         exit();
-    } else if (!preg_match("/^[a-zA-Z]*$/", $fname)) {
+    }
+    else if (!preg_match("/^[a-zA-Z]*$/", $fname)) {
         header("Location: ../signup.php?error=invalidfname&mail=" . $email . "&uid=" . $username . "&lname=" . $lname . "&campus=" . $campus);
         exit();
-    } else if (!preg_match("/^[a-zA-Z]*$/", $lname)) {
+    }
+    else if (!preg_match("/^[a-zA-Z]*$/", $lname)) {
         header("Location: ../signup.php?error=invalidlname&mail=" . $email . "&uid=" . $username . "&fname=" . $fname . "&campus=" . $campus);
         exit();
-    } else if (!preg_match("/^[a-zA-Z\s]*$/", $campus)) {
+    }
+    else if (!preg_match("/^[a-zA-Z\s]*$/", $campus)) {
         header("Location: ../signup.php?error=invalidcampus&mail=" . $email . "&uid=" . $username . "&fname=" . $fname);
         exit();
         // Password confirmation check
-    } else if (strlen($_POST["pwd"]) <= '8') {
+    }
+    else if (strlen($_POST["pwd"]) <= '8') {
         header("Location: ../signup.php?error=password8&uid=" . $username . "&mail=" . $email . "&lname=" . $fname . "&fname=" . $lname);
-    } elseif (!preg_match("#[0-9]+#", $password)) {
+    }
+    elseif (!preg_match("#[0-9]+#", $password)) {
         header("Location: ../signup.php?error=passwordnum&uid=" . $username . "&mail=" . $email . "&lname=" . $fname . "&fname=" . $lname);
-    } elseif (!preg_match("#[A-Z]+#", $password)) {
+    }
+    elseif (!preg_match("#[A-Z]+#", $password)) {
         header("Location: ../signup.php?error=passwordcap&uid=" . $username . "&mail=" . $email . "&lname=" . $fname . "&fname=" . $lname);
-    } elseif (!preg_match("#[a-z]+#", $password)) {
+    }
+    elseif (!preg_match("#[a-z]+#", $password)) {
         header("Location: ../signup.php?error=passwordlow&uid=" . $username . "&mail=" . $email . "&lname=" . $fname . "&fname=" . $lname);
-    } else if ($password !== $passwordRepeat) {
+    }
+    else if ($password !== $passwordRepeat) {
         header("Location: ../signup.php?error=passwordcheck&uid=" . $username . "&mail=" . $email . "&lname=" . $fname . "&fname=" . $lname);
         exit();
     }
@@ -124,8 +135,8 @@ if (isset($_POST['signup-submit'])) {
                             var_dump($mail);
                         } else {
                             // add new user info to DB
-                            $sql = "INSERT INTO users (uidUsers,emailUsers,pwdUsers,imgUsers,bioUsers,firstUsers,lastUsers,campusUsers,courseUsers,faceUsers,linkedUsers,twitUsers,instaUsers,verifiedUsers,vcodeUsers) 
-                            VALUES (?,?,?,'profiledefault.jpg','Add a bio',?,?,?,?,'NA','NA','NA','NA','FALSE',?)";
+                            $sql = "INSERT INTO users (uidUsers,emailUsers,pwdUsers,imgUsers,bioUsers,firstUsers,lastUsers,campusUsers,courseUsers,faceUsers,linkedUsers,twitUsers,instaUsers,verifiedUsers,vcodeUsers,coverUsers) 
+                            VALUES (?,?,?,'profiledefault.jpg','Add a bio',?,?,?,?,'NA','NA','NA','NA','FALSE',?,'coverdefault.png')";
                             $stmt = mysqli_stmt_init($conn);
                             if (!mysqli_stmt_prepare($stmt, $sql)) {
                                 header("Location: ../signup.php?error=sqlerror");

@@ -32,6 +32,7 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userId'] =  $row['idUsers'];
                     $_SESSION['userUid'] =  $row['uidUsers'];
                     $_SESSION['userImg'] = $row['imgUsers'];
+                    $_SESSION['userCover'] = $row['coverUsers'];
                     $_SESSION['userBio'] = $row['bioUsers'];
                     $_SESSION['userFname'] = $row['firstUsers'];
                     $_SESSION['userLname'] = $row['lastUsers'];
@@ -44,7 +45,8 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userVerified'] = $row['verifiedUsers'];
                     header("Location: ../index.php");
                     exit();
-                } else {
+                }
+                else {
                     header("Location: ../index.php?error=wrongpwd");
                     exit();
                 }

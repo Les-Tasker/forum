@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\PHPException;
 
 
 if (isset($_POST['submit'])) {
-    require '../includes/dbh.inc.php';
+    require '../model/dbh.inc.php';
     $email = $_POST['email'];
     $sql = "SELECT * FROM users where emailUsers='$email'";
     $result = mysqli_query($conn, $sql);

@@ -19,13 +19,13 @@ if (isset($_POST['submit'])) {
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
             if ($fileSize < 1000000) {
+                unlink('../uploads/' . $_SESSION['userImg']);
                 $fileNameNew = $id . "." . $fileActualExt;
                 $fileDestination = '../uploads/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 // header("Location: ../profile.php?uploadsuccess");
                 // ------
                 // Create connection
-                $conn = new mysqli($servername, $dBUsername, $dBPassword, $dBName);
                 // Check connection
                 if ($conn->connect_error) {
                     // WORKS!!! Returns an error if i change anything in server info
@@ -46,13 +46,14 @@ if (isset($_POST['submit'])) {
                     $sql2 = "UPDATE topics SET authorimg=? WHERE  author=?";
                     $stmt2 = mysqli_stmt_init($conn);
                     if (!mysqli_stmt_prepare($stmt2, $sql2)) {
-                        header("Location: ../signup.php?error=sqlerror");
+                        header("Location: ../profile.php?error=sqlerror");
                         exit();
                     } else {
                         mysqli_stmt_bind_param($stmt2, "ss", $fileNameNew, $uid);
                         mysqli_stmt_execute($stmt2);
                         mysqli_stmt_close($stmt2);
                         mysqli_close($conn);
+                        sleep(1);
                         header("Location: ../profile.php");
                     }
 

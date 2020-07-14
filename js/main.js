@@ -6,6 +6,14 @@ function boop2() {
   var element = document.getElementById("upload-form-id");
   element.classList.remove("animate");
 }
+function cover() {
+  var element = document.getElementById("upload-form-id2");
+  element.classList.add("animate");
+}
+function cover2() {
+  var element = document.getElementById("upload-form-id2");
+  element.classList.remove("animate");
+}
 function topicnew() {
   var element = document.getElementById("postnewtopic");
   element.classList.add("animate");
