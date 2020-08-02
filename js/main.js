@@ -1,8 +1,8 @@
-function boop() {
+function profileImage() {
   var element = document.getElementById("upload-form-id");
   element.classList.add("animate");
 }
-function boop2() {
+function profileImage2() {
   var element = document.getElementById("upload-form-id");
   element.classList.remove("animate");
 }
@@ -16,11 +16,12 @@ function cover2() {
 }
 function topicnew() {
   var element = document.getElementById("postnewtopic");
-  element.classList.add("animate");
+  element.classList.remove("hidden");
 }
 function topicnew2() {
   var element = document.getElementById("postnewtopic");
-  element.classList.remove("animate");
+
+  element.classList.add("hidden");
 }
 
 function bioedit() {
@@ -47,15 +48,27 @@ function courseEdit() {
   element1.classList.remove("hidden");
   element2.classList.remove("hidden");
 }
-function editcomment() {
-  var element = document.getElementById("edit-comment-reveal");
-  var element1 = document.getElementById("edit-comment-form-id");
+function editComment($commentid) {
+  var element = document.getElementById("originalpost-" + $commentid);
+  var element1 = document.getElementById("editcomment-" + $commentid);
   element.classList.add("hidden");
   element1.classList.remove("hidden");
 }
-function editcommentcancel() {
-  var element = document.getElementById("edit-comment-reveal");
-  var element1 = document.getElementById("edit-comment-form-id");
+function editCommentCancel($commentid) {
+  var element = document.getElementById("originalpost-" + $commentid);
+  var element1 = document.getElementById("editcomment-" + $commentid);
+  element.classList.remove("hidden");
+  element1.classList.add("hidden");
+}
+function editTopic($topicid) {
+  var element = document.getElementById("originaltopic-" + $topicid);
+  var element1 = document.getElementById("edittopic-" + $topicid);
+  element.classList.add("hidden");
+  element1.classList.remove("hidden");
+}
+function editTopicCancel($topicid) {
+  var element = document.getElementById("originaltopic-" + $topicid);
+  var element1 = document.getElementById("edittopic-" + $topicid);
   element.classList.remove("hidden");
   element1.classList.add("hidden");
 }

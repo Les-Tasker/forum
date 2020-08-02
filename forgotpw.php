@@ -1,5 +1,4 @@
 <?php
 require 'header.php';
-require 'controller/signup.cont.php';
-require 'view/forgotpw.view.php';
+include_once "controller/forgotpw.cont.php";
 require 'footer.php';

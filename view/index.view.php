@@ -1,6 +1,10 @@
 <?php
-if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
-?> <div class="main-content">
+function Display_campus($campus)
+{
+?>
+
+
+    <div class="main-content">
         <div class="search-container">
             <form class="form-inline" action="search.php" method="POST">
                 <div class="input-group">
@@ -12,27 +16,52 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
                 </div>
             </form>
         </div>
-        <?php
-        if (empty($campus)) {
-        } else {
-            foreach ($campus as $row) { ?>
-                <div class="forum-category">
-                    <img class="topic-logo" src="img/sae.png">
-                    <div class="topic-title-desc">
-                        <a class="topic-title" href="course.php?campus=<?php echo $row['campus'] ?>"><?php echo strtoupper($row['campus'])  ?></a>
-                        <hr>
-                    </div>
-                    <div class="topic-post-count">Topics: <?php campusCount($row['campus']) ?>
-                    </div>
-                </div> <?php
-                    }
-                }
-            } else { ?>
-        <div class="main-content-logout">
-            <h1>You need to be logged in to view the forum</h1><br>
-            <h1>If you have registered, please check your email to verify your account</h1><br><a href="signup.php">Click here to register</a>
+        <!-- Test -->
+        <div class="outline">
+            <h2>General </h2>
+            <div class="forum-category">
+                <img class="topic-logo" src="img/sae.png">
+                <div class="topic-title-desc">
+                    <a class="topic-title border-left" href="topic.php?aux=announce">Announcements</a>
+                </div>
+            </div>
+            <div class="forum-category">
+                <img class="topic-logo" src="img/sae.png">
+                <div class="topic-title-desc">
+                    <a class="topic-title border-left" href="topic.php?aux=rules">Forum Rules</a>
+                </div>
+            </div>
+            <div class="forum-category">
+                <img class="topic-logo" src="img/sae.png">
+                <div class="topic-title-desc">
+                    <a class="topic-title border-left" href="topic.php?aux=bugs&id=1">Bugs & Issues</a>
+                </div>
+            </div>
         </div>
+        <div class="outline">
+            <h2>Campus</h2>
+            <!-- test -->
 
-    </div><?php
-                signup();
+            <?php
+            if (empty($campus)) {
+            } else {
+
+                foreach ($campus as $row) {
+                    $CampusTopicCount = new TopicHandler;
+                    $campus =  $row['campus'];
+            ?>
+                    <div class="forum-category">
+                        <img class="topic-logo" src="img/sae.png">
+                        <div class="topic-title-desc">
+                            <a class="topic-title border-left" href="course.php?campus=<?php echo $row['campus'] ?>"><?php echo ucfirst($row['campus'])  ?></a>
+
+                        </div>
+                        <div class="topic-post-count">Topics: <?php echo $CampusTopicCount->Campus_topic_count_Handler($row['campus']) ?>
+                        </div>
+                    </div>
+            <?php
+                }
+            }
+            ?>
+        </div><?php
             }

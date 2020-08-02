@@ -1,44 +1,41 @@
 <?php
-if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
-    if ($_GET['campus']) { ?>
-        <div class="main-content">
-            <div class="search-container">
-                <form class="form-inline" action="search.php" method="POST">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search-string" placeholder="Search Topics" />
-                        <div class="input-group-append">
-                            <button name="search-submit" type="submit" class="btn btn-secondary">
-                                <img src="./img/search.png"></button>
-                        </div>
+function displayCourse($course)
+{
+?>
+    <div class="main-content">
+        <div class="search-container">
+            <form class="form-inline" action="search.php" method="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search-string" placeholder="Search Topics" />
+                    <div class="input-group-append">
+                        <button name="search-submit" type="submit" class="btn btn-secondary">
+                            <img src="./img/search.png"></button>
                     </div>
-                </form>
+                </div>
+            </form>
+        </div>
+        <div class="outline">
+            <div class="testpnt">
+                <h2><?php echo ucfirst($_GET['campus']) ?></h2>
             </div>
 
-
-            <div class="breadcrumbs"><a href="index.php">FRONT PAGE</a> > <?php echo strtoupper($_GET['campus']) ?></div>
             <?php
             if (empty($course)) {
+                header("Location: 404.php");
             } else {
+                $CourseCount = new CourseHandler;
                 foreach ($course as $row) { ?>
                     <div class="forum-category">
                         <img class="topic-logo" src="img/<?php echo $row['course'] . ".png" ?>">
                         <div class="topic-title-desc">
-                            <a class="topic-title" href="category.php?campus=<?php echo $_GET['campus'] ?>&course=<?php echo  $row['course'] ?>"><?php echo strtoupper($row['course']) ?></a>
-                            <hr>
+                            <a class="topic-title border-left" href="category.php?campus=<?php echo $_GET['campus'] ?>&course=<?php echo  $row['course'] ?>"><?php echo ucfirst($row['course']) ?></a>
                         </div>
-                        <div class="topic-post-count">Topics: <?php courseCount($_GET['campus'], $row['course']) ?>
+                        <div class="topic-post-count">Topics:
+                            <?php $CourseCount->Course_topic_count_Handler($_GET['campus'], $row['course']) ?>
                         </div>
                     </div>
             <?php
                 }
-            }
-        } else { ?>
-            <div class="main-content-logout">
-                <h1>You need to be logged in to view the forum</h1><br>
-                <h1>If you have registered, please check your email to verify your account</h1><br><a href="signup.php">Click here to register</a>
-            </div>
-
+            } ?>
         </div><?php
-                signup();
             }
-        }
