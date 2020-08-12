@@ -222,6 +222,7 @@ footer {
 /*Main Forum Body Styles | Main Forum Body Styles | Main Forum Body Styles | Main Forum Body Styles |*/
 /*Main Forum Body Styles | Main Forum Body Styles | Main Forum Body Styles | Main Forum Body Styles |*/
 /*Main Forum Body Styles | Main Forum Body Styles | Main Forum Body Styles | Main Forum Body Styles |*/
+
 .main-content {
   justify-content: space-around;
   display: flex;
@@ -547,16 +548,19 @@ footer {
 .signuperror {
   font-size: 1rem !important;
   color: rgb(255, 255, 255) !important;
+  border: 1px solid red;
 }
 .signupsuccess {
   font-size: 1rem !important;
-  color: #00cc11 !important;
+  color: rgb(255, 255, 255) !important;
+
+  border: 1px solid #00cc11 !important;
 }
 .loginerror {
   width: 100%;
   margin: 0 0 0 auto;
   text-align: right;
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
   color: rgb(255, 255, 255) !important;
 }
 .loginsuccess {
@@ -564,7 +568,7 @@ footer {
   margin: auto;
   text-align: right;
   font-size: 1rem !important;
-  color: #00cc11 !important;
+  color: rgb(255, 255, 255) !important;
 }
 /*Login Form Styles | Login Form Styles | Login Form Styles | Login Form Styles |*/
 /*Login Form Styles | Login Form Styles | Login Form Styles | Login Form Styles |*/
@@ -606,6 +610,7 @@ footer {
   }
   span {
     text-align: center;
+    margin: 0 5px;
   }
   a {
     border-radius: 15px;
@@ -615,10 +620,12 @@ footer {
     width: 100px;
     line-height: 30px;
     text-align: center;
+    padding: 0;
 
     &:hover {
       border: 1px solid $text-color;
       background-color: rgb(42, 158, 27);
+      color: #fff !important;
     }
     &:active {
       box-shadow: 1px 1px 5px $secondary-color;
@@ -1056,11 +1063,7 @@ footer {
   position: relative;
   top: 60px;
   left: calc(100% - 230px);
-  background-image: linear-gradient(
-    to bottom right,
-    $background-color,
-    $secondary-color
-  );
+  background-color: #222222c0;
   width: 221px;
   padding: 5px;
   border-radius: 15px;
@@ -1397,6 +1400,10 @@ blockquote {
 
   /*Topic Content Mobile Styles*/
   /*Topic Content Mobile Styles*/
+  .postnewtopic {
+    width: 100px;
+    font-size: 0.7rem;
+  }
 
   .main-content {
     width: 100%;
@@ -1441,8 +1448,12 @@ blockquote {
       font-size: 0.7rem;
     }
   }
+  .topic-title {
+    font-size: 0.9rem;
+  }
   .topic-post-count {
     font-size: 0.8rem;
+    display: none;
   }
   .forum-category {
     h6 {
@@ -1464,6 +1475,11 @@ blockquote {
     display: flex;
     margin: 0 auto;
     flex-direction: column;
+  }
+  .testpnt {
+    a {
+      padding: 0;
+    }
   }
 
   /*Profile Page Mobile Styles*/
@@ -1488,9 +1504,12 @@ blockquote {
     flex-direction: column;
     .profile-container-left {
       width: 100%;
+      padding-bottom: 0;
+      height: auto;
     }
     .profile-container-right {
       width: 100%;
+      padding-top: 0;
       border: none;
       .profile-bio {
         border: none;
@@ -1512,7 +1531,7 @@ blockquote {
   }
 }
 .upload-form2 {
-  width: 100%;
+  width: 100vw;
   margin: auto;
   .upload-form-inner {
     width: 100%;
@@ -1523,4 +1542,7 @@ blockquote {
       }
     }
   }
+}
+.cover-img {
+  width: 100%;
 }

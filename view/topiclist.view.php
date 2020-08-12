@@ -11,8 +11,8 @@ function Display_topic_list($topic)
             <div class="input-group">
                 <input type="text" class="form-control" name="search-string" placeholder="Search Topics" />
                 <div class="input-group-append">
-                    <button name="search-submit" type="submit" class="btn btn-secondary"><img
-                            src="./img/search.png"></button>
+                    <button name="search-submit" type="submit" class="btn btn-secondary"><img src="./img/search.png"
+                            alt="Search Icon"></button>
                 </div>
             </div>
         </form>
@@ -26,13 +26,15 @@ function Display_topic_list($topic)
             <a href="category.php?campus=<?php echo $_GET['campus'] ?>&course=<?php echo $_GET['course'] ?>">
                 <h2><?php echo ucfirst($_GET['course']) ?> - </h2>
             </a>
-            <h2><?php echo ucfirst($_GET['category']) ?></h2>
+            <h2> <?php echo ucfirst($_GET['category']) ?></h2>
 
 
 
-            <div class="postnewtopic" onclick="topicnew()">
-                <p>New Topic</p><img id="plus-icon-topic" src="img/plus.png" />
-            </div>
+
+
+        </div>
+        <div class="postnewtopic" onclick="topicnew()">
+            <p>New Topic</p><img id="plus-icon-topic" src="img/plus.png" alt="Post Topic Icon" />
         </div>
         <div id="postnewtopic" class="topic-container hidden">
 
@@ -58,10 +60,10 @@ function Display_topic_list($topic)
                     $GetReplies = new CommentHandler;
             ?>
         <div class="forum-category">
-            <img class="topic-logo" src="uploads/<?php echo $row['authorimg'] ?>">
+            <img class="topic-logo" src="uploads/<?php echo $row['authorimg'] ?>" alt="Topic Logo">
             <div class="topic-title-desc">
                 <a class="topic-title border-left"
-                    href="topic.php?campus=<?php echo $_GET['campus'] ?>&course=<?php echo $_GET['course'] ?>&category=<?php echo $_GET['category'] ?>&id=<?php echo $row['id'] ?>"><?php echo $title ?></a>
+                    href="topic.php?campus=<?php echo $_GET['campus'] ?>&course=<?php echo $_GET['course'] ?>&category=<?php echo $_GET['category'] ?>&id=<?php echo $row['id'] ?>"><?php echo substr($title, 0, 34) ?>...</a>
 
             </div>
             <div class="topic-post-count">

@@ -29,7 +29,8 @@ function View_profile()
         </form>
         <div class="profile-container-left" id="left">
             <div class="profile-image-container">
-                <img class="profile-img" src="./uploads/<?php echo $User->Userimage ?>" alt="Profile Image" />
+                <img class="profile-img" src="./uploads/<?php echo $User->Userimage ?>"
+                    alt=" <?php echo $User->Username ?> Profile Image" />
                 <h1 class="profile-info"><?php echo $User->Username ?> <img class="user-course-badge"
                         src="./img/<?php echo $User->Usercourse . ".png" ?>" alt="Profile Image" />
                 </h1>

@@ -40,10 +40,6 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
             // redirect to error 404 page
             header("Location: 404.php");
         }
-        //if Campus parameter is not set, user has attempted to manipulate URL or followed a bad link
-        // redirect to error 404 page
-    } else {
-        header("Location: 404.php");
     }
 } else {
     //if user is not logged in or user is logged in but not verified

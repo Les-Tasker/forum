@@ -35,4 +35,9 @@ class MessageHandler extends Message
         $MessageHandler = $this->Get_new_message_notification($conID, $toid);
         return $MessageHandler;
     }
+    public function Get_recent_message_Handler($id)
+    {
+        $MessageHandler = $this->Get_recent_message($id);
+        return $MessageHandler;
+    }
 }

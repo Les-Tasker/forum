@@ -2,9 +2,11 @@
 
 require_once "view/category.view.php";
 
-
+//Checks for user logged in and account is verified
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
+    //Check URL has valid parameters
     if ($_GET['campus'] && $_GET['course']) {
+        //if logged in and valid parameters load model classes
         require_once 'model/CourseHandler.class.php';
         require_once 'model/CampusHandler.class.php';
         require_once 'model/CategoryHandler.class.php';
@@ -29,14 +31,8 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
             $category = $NewCategory->Get_category_Handler();
             displayCategory($category);
         } else {
-            // if false, user has attempted to manipulate URL or followed a bad link
-            // redirect to error 404 page
-            header("Location: 404.php");
         }
-        //if Campus parameter is not set, user has attempted to manipulate URL or followed a bad link
-        // redirect to error 404 page
     } else {
-        header("Location: 404.php");
     }
 } else {
     //if user is not logged in or user is logged in but not verified

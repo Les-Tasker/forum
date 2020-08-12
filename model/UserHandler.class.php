@@ -49,6 +49,7 @@ class UserHandler extends User
         $UserHandler = $this->Set_user_profile_image();
         return $UserHandler;
     }
+
     public function Set_user_cover_image_Handler()
     {
         $UserHandler = $this->Set_user_cover_image();

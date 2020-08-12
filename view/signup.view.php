@@ -28,13 +28,15 @@
                         <option value="Music Business">Music Business</option>
                     </select>
 
-                    <input type="text" name="mail" placeholder="SAE Student Email">
+                    <input type="email" name="mail" placeholder="SAE Student Email">
 
                     <input type="password" name="pwd" placeholder="Password">
 
                     <input type="password" name="pwd-repeat" placeholder="Repeat Password">
                     <button type="submit" name="signup-submit">Signup</button>
                 </form>
+                <?php include_once "controller/notify.cont.php";
+                notify() ?>
             </div>
         </section>
     </div>

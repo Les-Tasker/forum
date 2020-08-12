@@ -21,7 +21,7 @@ function displayCategory($category)
             <a href="course.php?campus=<?php echo $_GET['campus'] ?>">
                 <h2><?php echo ucfirst($_GET['campus']) ?> - </h2>
             </a>
-            <h2><?php echo ucfirst($_GET['course']) ?></h2>
+            <h2> <?php echo ucfirst($_GET['course']) ?></h2>
 
         </div>
         <?php

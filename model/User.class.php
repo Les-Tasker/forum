@@ -116,6 +116,7 @@ class User extends DBConn
             }
         }
     }
+
     protected function Display_unread_message($user)
     {
         $conn = $this->Connection();
@@ -134,14 +135,14 @@ class User extends DBConn
         $sql = "UPDATE users SET verifiedUsers='TRUE' WHERE  emailUsers=? AND vcodeUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: signup.php?error=sqlerror");
+            header("Location: ../signup.php?error=sqlerror");
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "ss", $email, $vcode);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
-            header("Location: acctver.php");
+            header("Location: ../acctver.php");
         }
     }
 
@@ -151,19 +152,19 @@ class User extends DBConn
         $conn = $this->Connection();
         $id = $_SESSION['userId'];
         $uid = $_SESSION['userUid'];
-        $file = $_FILES['file'];
         $fileName = $_FILES['file']['name'];
         $fileTmpName = $_FILES['file']['tmp_name'];
         $fileSize = $_FILES['file']['size'];
         $fileError = $_FILES['file']['error'];
-        $fileType = $_FILES['file']['type'];
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
         $allowed = array('jpg', 'jpeg', 'png');
         if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
                 if ($fileSize < 1000000) {
-                    unlink('uploads/' . $_SESSION['userImg']);
+                    if (!$_SESSION['userImg'] == 'profiledefault.png') {
+                        unlink('uploads/' . $_SESSION['userImg']);
+                    }
                     $fileNameNew = $id . "." . $fileActualExt;
                     $fileDestination = 'uploads/' . $fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
@@ -214,20 +215,19 @@ class User extends DBConn
     {
         $conn = $this->Connection();
         $id = $_SESSION['userId'];
-        $uid = $_SESSION['userUid'];
-        $file = $_FILES['file'];
         $fileName = $_FILES['file']['name'];
         $fileTmpName = $_FILES['file']['tmp_name'];
         $fileSize = $_FILES['file']['size'];
         $fileError = $_FILES['file']['error'];
-        $fileType = $_FILES['file']['type'];
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
         $allowed = array('jpg', 'jpeg', 'png');
         if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
                 if ($fileSize < 1000000) {
-                    unlink('uploads/' . $_SESSION['userCover']);
+                    if (!$_SESSION['userCover'] == 'coverdefault.png') {
+                        unlink('uploads/' . $_SESSION['userCover']);
+                    }
                     $fileNameNew = "cover" . $id . "." . $fileActualExt;
                     $fileDestination = 'uploads/' . $fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
@@ -236,7 +236,6 @@ class User extends DBConn
                     // Create connection
                     // Check connection
                     if ($conn->connect_error) {
-                        // WORKS!!! Returns an error if i change anything in server info
                         header("Location: profile.php?error=DBCONNECT");
                         die("Connection failed: " . $conn->connect_error);
                     }
@@ -305,10 +304,15 @@ class User extends DBConn
             // Email validation
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             header("Location: signup.php?error=invalidmail");
+
             //To limit the userbase to only SAE students, we check for a valid string that only sae students have in their student email
-        } else if (!preg_match("/@saeinstitute/", $email)) {
-            header("Location: signup.php?error=invalidmail");
-            // Username validation Regex
+            // } else if (!preg_match("/@saeinstitute/", $email)) {
+            //     header("Location: signup.php?error=invalidmail");
+            //The above else if statement has been disabled to allow those testing to register with any valid email address
+
+
+
+            // Username validation Regex 
         } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
             header("Location: signup.php?error=invaliduid");
         } else if (!preg_match("/^[a-zA-Z]*$/", $fname)) {
@@ -413,15 +417,14 @@ class User extends DBConn
             $mail->AddAddress($email, "Admin");
             $mail->SetFrom("No-Reply@SAE-Student-Forums.com");
             $mail->Subject = "SAE Student Forum";
-            $content = "<b><h1>Password Reset<br><a href='http://localhost/Login/pwreset.php?mail=" . "$email" . "&vcode=" . "$vcode" . "'>Cick here to reset password</a></h1></b>";
+            $content = "<b><h1>Password Reset<br><a href='http://localhost/Login/pwreset.php?mail=" . "$email" . "&vcode=" . "$vcode" . "'>Click here to reset your password</a></h1></b>";
             $mail->MsgHTML($content);
             ob_start();
             if (!$mail->Send()) {
                 echo "Error while sending Email.";
             } else {
                 ob_get_clean();
-                // mysqli_close($conn);
-                header("Location: index.php?pwreset=success");
+                header("Location: forgotpw.php?pwreset=success");
             }
         } else {
             header("Location: forgotpw.php?pwreseterror");
@@ -431,18 +434,19 @@ class User extends DBConn
     {
         $conn = $this->Connection();
         $vcode = $_POST['vcode'];
+        $mail = $_POST['mail'];
         $password = $_POST['password'];
         $passwordRepeat = $_POST['passwordrepeat'];
         if (strlen($password) <= '8') {
-            header("Location: pwreset.php?error=password8");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=password8");
         } elseif (!preg_match("#[0-9]+#", $password)) {
-            header("Location: pwreset.php?error=passwordnum");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordnum");
         } elseif (!preg_match("#[A-Z]+#", $password)) {
-            header("Location: pwreset.php?error=passwordcap");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordcap");
         } elseif (!preg_match("#[a-z]+#", $password)) {
-            header("Location: pwreset.php?error=passwordlow");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordlow");
         } else if ($password !== $passwordRepeat) {
-            header("Location: pwreset.php?error=passwordcheck");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordcheck");
         } else {
 
             $sql = "UPDATE users SET pwdUsers = ?, vcodeUsers = ? WHERE vcodeUsers = ?";

@@ -674,18 +674,20 @@ footer img {
 .signuperror {
   font-size: 1rem !important;
   color: white !important;
+  border: 1px solid red;
 }
 
 .signupsuccess {
   font-size: 1rem !important;
-  color: #00cc11 !important;
+  color: white !important;
+  border: 1px solid #00cc11 !important;
 }
 
 .loginerror {
   width: 100%;
   margin: 0 0 0 auto;
   text-align: right;
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
   color: white !important;
 }
 
@@ -694,7 +696,7 @@ footer img {
   margin: auto;
   text-align: right;
   font-size: 1rem !important;
-  color: #00cc11 !important;
+  color: white !important;
 }
 
 /*Login Form Styles | Login Form Styles | Login Form Styles | Login Form Styles |*/
@@ -758,6 +760,7 @@ footer img {
 
 .login-button span {
   text-align: center;
+  margin: 0 5px;
 }
 
 .login-button a {
@@ -768,11 +771,13 @@ footer img {
   width: 100px;
   line-height: 30px;
   text-align: center;
+  padding: 0;
 }
 
 .login-button a:hover {
   border: 1px solid white;
   background-color: #2a9e1b;
+  color: #fff !important;
 }
 
 .login-button a:active {
@@ -1362,8 +1367,7 @@ footer img {
   position: relative;
   top: 60px;
   left: calc(100% - 230px);
-  background-image: -webkit-gradient(linear, left top, right bottom, from(#000), to(#474747));
-  background-image: linear-gradient(to bottom right, #000, #474747);
+  background-color: #222222c0;
   width: 221px;
   padding: 5px;
   border-radius: 15px;
@@ -1791,6 +1795,10 @@ blockquote a {
   }
   /*Topic Content Mobile Styles*/
   /*Topic Content Mobile Styles*/
+  .postnewtopic {
+    width: 100px;
+    font-size: 0.7rem;
+  }
   .main-content {
     width: 100%;
     margin: 40px auto;
@@ -1840,8 +1848,12 @@ blockquote a {
   .forum-topic-post-content h6 {
     font-size: 0.7rem;
   }
+  .topic-title {
+    font-size: 0.9rem;
+  }
   .topic-post-count {
     font-size: 0.8rem;
+    display: none;
   }
   .forum-category h6 {
     text-align: center;
@@ -1865,6 +1877,9 @@ blockquote a {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  .testpnt a {
+    padding: 0;
   }
   /*Profile Page Mobile Styles*/
   /*Profile Page Mobile Styles*/
@@ -1895,9 +1910,12 @@ blockquote a {
   }
   .profile-container .profile-container-left {
     width: 100%;
+    padding-bottom: 0;
+    height: auto;
   }
   .profile-container .profile-container-right {
     width: 100%;
+    padding-top: 0;
     border: none;
   }
   .profile-container .profile-container-right .profile-bio {
@@ -1917,7 +1935,7 @@ blockquote a {
 }
 
 .upload-form2 {
-  width: 100%;
+  width: 100vw;
   margin: auto;
 }
 
@@ -1928,5 +1946,9 @@ blockquote a {
 
 .upload-form2 .upload-form-inner .profile-button-wrapper input {
   margin: auto;
+}
+
+.cover-img {
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

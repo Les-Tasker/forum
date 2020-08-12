@@ -141,4 +141,15 @@ class Message extends DBConn
             echo 'New Message';
         }
     }
+    protected function Get_recent_message($id)
+    {
+        $conn = $this->Connection();
+        $sql = "SELECT * FROM messages WHERE conID = '$id' ORDER BY ts DESC LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+        $row = mysqli_fetch_assoc($result);
+        if ($resultCheck > 0) {
+            return $row['ts'];
+        }
+    }
 }

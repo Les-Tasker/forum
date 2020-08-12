@@ -13,7 +13,7 @@ if (!empty($searchResult)) {
 <div class="forum-category">
     <img class="topic-logo" src="uploads/<?php echo $row['authorimg'] ?>">
     <div class="topic-title-desc">
-        <a class="topic-title"
+        <a class="topic-title border-left"
             href="topic.php?campus=<?php echo  $row['campus'] ?>&course=<?php echo $row['course'] ?>&category=<?php echo $row['category'] ?>&id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a>
 
 

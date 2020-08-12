@@ -12,7 +12,7 @@ class Topic extends DBConn
         session_start();
         $title = $_POST['topic-title'];
         $string = $_POST['topic-body'];
-        $campus = $_POST['campus'];
+        $campus =  $_POST['campus'];
         $course = $_POST['course'];
         $category = $_POST['category'];
         $author = $_SESSION['userUid'];
@@ -27,7 +27,7 @@ class Topic extends DBConn
         $body = $string;
         // Form error check / Validate via PHP empty function
         if (empty($title) || empty($body)) {
-            header("Location: ../topiclist.php?campus=" . $campus . "&course=" . $course . "&category=" . $category . "&error=emptyfields");
+            header("Location: topiclist.php?campus=" . $campus . "&course=" . $course . "&category=" . $category . "&error=emptyfields");
             exit();
         } else {
             // add new user info to DB
@@ -35,7 +35,7 @@ class Topic extends DBConn
             VALUES (?,?,?,?,?,?,?,?)";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("Location: ../signup.php?error=sqlerror");
+                header("Location: signup.php?error=sqlerror");
                 exit();
             } else {
                 mysqli_stmt_bind_param($stmt, "ssssssss", $author, $title, $body, $posted, $authorimg, $campus, $course, $category);
@@ -124,7 +124,7 @@ class Topic extends DBConn
         body=? WHERE id=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../signup.php?error=sqlerror");
+            header("Location: signup.php?error=sqlerror");
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "si", $body, $id);
@@ -142,7 +142,7 @@ class Topic extends DBConn
         if ($conn->query($sql) === true) {
             echo "Record deleted successfully";
             echo "Returning to previous page in 5s";
-            header("Location: ../index.php");
+            header("Location: index.php");
         } else {
             echo "Error deleting record: " . $conn->error;
             header("location: index.php");

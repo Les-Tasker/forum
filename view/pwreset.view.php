@@ -9,5 +9,8 @@
             <button type="submit" name="submit">Submit</button>
         </form>
 
+        <?php
+        include_once "controller/notify.cont.php";
+        notify(); ?>
     </section>
 </div>
