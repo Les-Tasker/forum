@@ -9,9 +9,9 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     //Check if Campus parameter is set in URL
     if ($_GET['campus']) {
         $course = new CourseHandler;
-        $courseList = $Course->getCoursesHandler();
+        $courseList = $course->getCoursesHandler();
         $campus = new CampusHandler;
-        $campusList = $Campus->getCampusHandler();
+        $campusList = $campus->getCampusHandler();
         //create array to store object values
         $list = [];
         //loop object and add values to array
@@ -19,7 +19,7 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
             array_push($list, $item['campus']);
         }
         //check if the URL Campus parameter is in the array of values created
-        if (in_array($_GET['campus'], $List)) {
+        if (in_array($_GET['campus'], $list)) {
             //if true, display corresponding forum section
             displayCourse($courseList);
         } else {

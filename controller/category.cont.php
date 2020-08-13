@@ -11,9 +11,9 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
         require_once 'model/CampusHandler.class.php';
         require_once 'model/CategoryHandler.class.php';
         $course = new CourseHandler;
-        $courseList = $Course->getCoursesHandler();
+        $courseList = $course->getCoursesHandler();
         $campus = new CampusHandler;
-        $campusList = $Campus->getCampusHandler();
+        $campusList = $campus->getCampusHandler();
         //create array to store object values
         $campusArray = [];
         $courseArray = [];
