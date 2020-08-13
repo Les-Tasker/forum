@@ -14,6 +14,7 @@ class UserHandler extends User
     public function Get_user_info_by_id_Handler($id)
     {
         $UserHandler = $this->Get_user_info_by_id($id);
+
         return $UserHandler;
     }
 
