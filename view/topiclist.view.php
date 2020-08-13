@@ -55,7 +55,7 @@ function displayTopicList($topic)
             if (empty($topic)) {
             } else {
                 foreach ($topic as $row) {
-                    require_once "model/CommentHandler.class.php";
+                    require_once "model/Comment.class.php";
                     $title = substr($row['title'], 0, 50);
                     $getReplies = new CommentHandler;
             ?>

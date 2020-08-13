@@ -1,7 +1,7 @@
 <?php
-require_once 'model/TopicHandler.class.php';
-require_once 'model/CommentHandler.class.php';
-include_once "model/DBConnHandler.class.php";
+require_once 'model/Topic.class.php';
+require_once 'model/Comment.class.php';
+include_once "model/DBConn.class.php";
 if (!empty($_POST['search-string'])) {
     // Visible when logged in
     if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {

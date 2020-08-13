@@ -1,8 +1,8 @@
 <?php
 
-require_once 'model/TopicHandler.class.php';
-require_once 'model/CommentHandler.class.php';
-require_once 'model/UserHandler.class.php';
+require_once 'model/Topic.class.php';
+require_once 'model/Comment.class.php';
+require_once 'model/User.class.php';
 require_once 'view/topic.view.php';
 if (isset($_POST['comment-submit'])) {
     $newComment = new CommentHandler;

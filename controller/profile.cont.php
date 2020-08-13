@@ -1,6 +1,6 @@
 <?php
 require_once 'header.php';
-require_once 'model/UserHandler.class.php';
+require_once 'model/User.class.php';
 //chekc if froms submitted
 if (isset($_POST['bio-submit'])) {
     //create new object

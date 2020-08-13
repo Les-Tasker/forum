@@ -3,8 +3,8 @@ require_once "header.php";
 // check if a user is logged in by checking if a session has been started
 // if session has been started and userVerified == TRUE, run code
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
-    require_once 'model/CourseHandler.class.php';
-    require_once 'model/CampusHandler.class.php';
+    require_once 'model/Course.class.php';
+    require_once 'model/Campus.class.php';
     require_once "view/course.view.php";
     //Check if Campus parameter is set in URL
     if ($_GET['campus']) {

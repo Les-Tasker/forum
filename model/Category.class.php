@@ -23,3 +23,17 @@ class Category extends DBConn
         echo $resultCheck;
     }
 }
+class CategoryHandler extends Category
+{
+
+    public function getCategoryHandler()
+    {
+        $categoryHandler = $this->getCategory();
+        return $categoryHandler;
+    }
+    public function categoryTopicCountHandler($campusName, $courseName, $categoryName)
+    {
+        $categoryHandler = $this->categoryTopicCount($campusName, $courseName, $categoryName);
+        return $categoryHandler;
+    }
+}

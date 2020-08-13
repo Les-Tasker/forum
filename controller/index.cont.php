@@ -2,8 +2,8 @@
 //Check valid user logged in
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     //load required files
-    require_once 'model/CampusHandler.class.php';
-    require_once 'model/TopicHandler.class.php';
+    require_once 'model/Campus.class.php';
+    require_once 'model/Topic.class.php';
     //create new object
     $newCampus = new CampusHandler;
     //execute object method

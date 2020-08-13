@@ -2,7 +2,7 @@
 
 require_once "header.php";
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
-    require_once "model/MessageHandler.class.php";
+    require_once "model/Message.class.php";
     require_once "view/inbox.view.php";
     $newMessage = new MessageHandler;
     $inbox = $newMessage->getInboxHandler($_SESSION['userId']);

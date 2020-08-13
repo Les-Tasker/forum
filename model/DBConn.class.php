@@ -22,3 +22,13 @@ class DBConn
         }
     }
 }
+class DBConnHandler extends DBConn
+{
+
+
+    public function connectionHandler()
+    {
+        $dbConnHandler = $this->Connection();
+        return $dbConnHandler;
+    }
+}

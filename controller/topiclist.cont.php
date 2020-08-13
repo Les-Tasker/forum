@@ -1,15 +1,15 @@
 <?php
 
-require_once "model/TopicHandler.class.php";
+require_once "model/Topic.class.php";
 if (isset($_POST['topic-submit'])) {
     $NewTopic = new TopicHandler;
     $NewTopic->setNewTopicHandler();
 }
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     if ($_GET['category'] && $_GET['campus'] && $_GET['course']) {
-        require_once 'model/CourseHandler.class.php';
-        require_once 'model/CampusHandler.class.php';
-        require_once 'model/CategoryHandler.class.php';
+        require_once 'model/Course.class.php';
+        require_once 'model/Campus.class.php';
+        require_once 'model/Category.class.php';
         require_once "view/topiclist.view.php";
         $course = new CourseHandler;
         $courseList = $course->getCoursesHandler();

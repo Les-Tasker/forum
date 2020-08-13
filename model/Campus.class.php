@@ -26,3 +26,18 @@ class Campus extends DBConn
         return $resultCheck;
     }
 }
+class CampusHandler extends Campus
+{
+
+
+    public function getCampusHandler()
+    {
+        $campusHandler = $this->getCampus();
+        return $campusHandler;
+    }
+    public function campusTopicCountHandler($campusName)
+    {
+        $campusHandler = $this->campusTopicCount($campusName);
+        return $campusHandler;
+    }
+}

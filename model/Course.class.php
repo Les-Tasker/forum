@@ -24,3 +24,17 @@ class Course extends DBConn
         echo $resultCheck;
     }
 }
+class CourseHandler extends Course
+{
+
+    public function getCoursesHandler()
+    {
+        $courseHandler = $this->getCourses();
+        return $courseHandler;
+    }
+    public function courseTopicCountHandler($campusName, $courseName)
+    {
+        $courseHandler = $this->courseTopicCount($campusName, $courseName);
+        return $courseHandler;
+    }
+}

@@ -2,7 +2,7 @@
 //Start session in header to enable session in all pages site wide
 session_start();
 //load required files
-require 'model/UserHandler.class.php';
+require 'model/User.class.php';
 require 'view/header.view.php';
 //if login form submitted
 if (isset($_POST['login-submit'])) {

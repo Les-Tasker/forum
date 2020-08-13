@@ -7,9 +7,9 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     //Check URL has valid parameters
     if ($_GET['campus'] && $_GET['course']) {
         //if logged in and valid parameters load model classes
-        require_once 'model/CourseHandler.class.php';
-        require_once 'model/CampusHandler.class.php';
-        require_once 'model/CategoryHandler.class.php';
+        require_once 'model/Course.class.php';
+        require_once 'model/Campus.class.php';
+        require_once 'model/Category.class.php';
         $course = new CourseHandler;
         $courseList = $course->getCoursesHandler();
         $campus = new CampusHandler;

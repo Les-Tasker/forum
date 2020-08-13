@@ -2,7 +2,7 @@
 
 if (isset($_POST['signup-submit'])) {
 
-    include_once "model/UserHandler.class.php";
+    include_once "model/User.class.php";
     $newUser = new UserHandler;
     $newUser->signupNewUserHandler();
 }
