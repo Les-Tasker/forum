@@ -7,14 +7,14 @@ require 'view/header.view.php';
 //if login form submitted
 if (isset($_POST['login-submit'])) {
     //create new object
-    $NewUser = new UserHandler;
+    $newUser = new UserHandler;
     //execute object login method
-    $NewUser->userLogInHandler();
+    $newUser->userLogInHandler();
 }
 //if logout form submitted
 if (isset($_POST['logout-submit'])) {
     //create new object
-    $NewUser = new UserHandler;
+    $newUser = new UserHandler;
     //execute object logout method
-    $NewUser->userLogOutHandler();
+    $newUser->userLogOutHandler();
 }

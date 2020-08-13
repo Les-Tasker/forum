@@ -6,12 +6,12 @@ class CategoryHandler extends Category
 
     public function getCategoryHandler()
     {
-        $CategoryHandler = $this->getCategory();
-        return $CategoryHandler;
+        $categoryHandler = $this->getCategory();
+        return $categoryHandler;
     }
     public function categoryTopicCountHandler($campusName, $courseName, $categoryName)
     {
-        $CategoryHandler = $this->categoryTopicCount($campusName, $courseName, $categoryName);
-        return $CategoryHandler;
+        $categoryHandler = $this->categoryTopicCount($campusName, $courseName, $categoryName);
+        return $categoryHandler;
     }
 }

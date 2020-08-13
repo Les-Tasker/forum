@@ -1,13 +1,13 @@
 <?php
 
-$DBConn = new DBConnHandler;
-$conn = $DBConn->connectionHandler();
+$dbConn = new DBConnHandler;
+$conn = $dbConn->connectionHandler();
 $search = mysqli_real_escape_string($conn, $_POST['search-string']);
-$NewSearch = new TopicHandler;
-$searchResult = $NewSearch->searchResultHandler($search);
+$newSearch = new TopicHandler;
+$searchResult = $newSearch->searchResultHandler($search);
 echo '<div class="outline">';
 if (!empty($searchResult)) {
-    $GetReplies = new CommentHandler;
+    $getReplies = new CommentHandler;
     foreach ($searchResult as $row) { ?>
 
 <div class="forum-category">
@@ -19,7 +19,7 @@ if (!empty($searchResult)) {
 
     </div>
     <div class="topic-post-count">
-        <h6>Replies: <?php $GetReplies->getTopicRepliesHandler($row['id']) ?></h6>
+        <h6>Replies: <?php $getReplies->getTopicRepliesHandler($row['id']) ?></h6>
         <h6> Most Recent<br>
             <?php
                     if (!empty($row['recent'])) {

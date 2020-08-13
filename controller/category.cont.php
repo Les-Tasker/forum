@@ -10,25 +10,25 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
         require_once 'model/CourseHandler.class.php';
         require_once 'model/CampusHandler.class.php';
         require_once 'model/CategoryHandler.class.php';
-        $Course = new CourseHandler;
-        $CourseList = $Course->getCoursesHandler();
-        $Campus = new CampusHandler;
-        $CampusList = $Campus->getCampusHandler();
+        $course = new CourseHandler;
+        $courseList = $Course->getCoursesHandler();
+        $campus = new CampusHandler;
+        $campusList = $Campus->getCampusHandler();
         //create array to store object values
-        $CampusArray = [];
-        $CourseArray = [];
+        $campusArray = [];
+        $courseArray = [];
         //loop objects and add values to array
-        foreach ($CampusList as $item) {
-            array_push($CampusArray, $item['campus']);
+        foreach ($campusList as $item) {
+            array_push($campusArray, $item['campus']);
         }
-        foreach ($CourseList as $item) {
-            array_push($CourseArray, $item['course']);
+        foreach ($courseList as $item) {
+            array_push($courseArray, $item['course']);
         }
 
-        if (in_array($_GET['campus'], $CampusArray) && in_array($_GET['course'], $CourseArray)) {
+        if (in_array($_GET['campus'], $campusArray) && in_array($_GET['course'], $courseArray)) {
             //if true, display corresponding forum section
-            $NewCategory = new CategoryHandler;
-            $category = $NewCategory->getCategoryHandler();
+            $newCategory = new CategoryHandler;
+            $category = $newCategory->getCategoryHandler();
             displayCategory($category);
         } else {
         }

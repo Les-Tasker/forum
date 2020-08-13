@@ -57,7 +57,7 @@ function displayTopicList($topic)
                 foreach ($topic as $row) {
                     require_once "model/CommentHandler.class.php";
                     $title = substr($row['title'], 0, 50);
-                    $GetReplies = new CommentHandler;
+                    $getReplies = new CommentHandler;
             ?>
         <div class="forum-category">
             <img class="topic-logo" src="uploads/<?php echo $row['authorimg'] ?>" alt="Topic Logo">
@@ -67,7 +67,7 @@ function displayTopicList($topic)
 
             </div>
             <div class="topic-post-count">
-                <h6>Replies: <?php $GetReplies->GetTopicRepliesHandler($row['id']) ?></h6>
+                <h6>Replies: <?php $getReplies->GetTopicRepliesHandler($row['id']) ?></h6>
                 <h6> Most Recent<br>
                     <?php
                                 if (!empty($row['recent'])) {

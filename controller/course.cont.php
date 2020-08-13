@@ -8,20 +8,20 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     require_once "view/course.view.php";
     //Check if Campus parameter is set in URL
     if ($_GET['campus']) {
-        $Course = new CourseHandler;
-        $CourseList = $Course->getCoursesHandler();
-        $Campus = new CampusHandler;
-        $CampusList = $Campus->getCampusHandler();
+        $course = new CourseHandler;
+        $courseList = $Course->getCoursesHandler();
+        $campus = new CampusHandler;
+        $campusList = $Campus->getCampusHandler();
         //create array to store object values
-        $List = [];
+        $list = [];
         //loop object and add values to array
-        foreach ($CampusList as $item) {
-            array_push($List, $item['campus']);
+        foreach ($campusList as $item) {
+            array_push($list, $item['campus']);
         }
         //check if the URL Campus parameter is in the array of values created
         if (in_array($_GET['campus'], $List)) {
             //if true, display corresponding forum section
-            displayCourse($CourseList);
+            displayCourse($courseList);
         } else {
             // if false, user has attempted to manipulate URL or followed a bad link
             // redirect to error 404 page

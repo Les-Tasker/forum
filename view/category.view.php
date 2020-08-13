@@ -27,7 +27,7 @@ function displayCategory($category)
         <?php
             if (empty($category)) {
             } else {
-                $CategoryCount = new CategoryHandler;
+                $categoryCount = new CategoryHandler;
                 foreach ($category as $row) { ?>
         <div class="forum-category">
             <img class="topic-logo" src="img/<?php echo $_GET['course'] . ".png" ?>">
@@ -38,7 +38,7 @@ function displayCategory($category)
 
             </div>
             <div class="topic-post-count">Topics:
-                <?php $CategoryCount->categoryTopicCountHandler($_GET['campus'], $_GET['course'], $row['category']) ?>
+                <?php $categoryCount->categoryTopicCountHandler($_GET['campus'], $_GET['course'], $row['category']) ?>
             </div>
         </div>
         <?php

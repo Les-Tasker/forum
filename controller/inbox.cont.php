@@ -4,8 +4,8 @@ require_once "header.php";
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     require_once "model/MessageHandler.class.php";
     require_once "view/inbox.view.php";
-    $NewMessage = new MessageHandler;
-    $inbox = $NewMessage->getInboxHandler($_SESSION['userId']);
+    $newMessage = new MessageHandler;
+    $inbox = $newMessage->getInboxHandler($_SESSION['userId']);
     displayInbox($inbox);
 } else {
     //if user is not logged in or user is logged in but not verified

@@ -6,12 +6,12 @@ class CampusHandler extends Campus
 
     public function getCampusHandler()
     {
-        $CampusHandler = $this->getCampus();
-        return $CampusHandler;
+        $campusHandler = $this->getCampus();
+        return $campusHandler;
     }
     public function campusTopicCountHandler($campusName)
     {
-        $CampusHandler = $this->campusTopicCount($campusName);
-        return $CampusHandler;
+        $campusHandler = $this->campusTopicCount($campusName);
+        return $campusHandler;
     }
 }

@@ -4,10 +4,10 @@ include_once "DBConn.class.php";
 class Comment extends DBConn
 {
 
-    protected function getTopicReplies($topicid)
+    protected function getTopicReplies($topicId)
     {
         $conn = $this->Connection();
-        $sql = "SELECT * FROM comments WHERE topicid='$topicid' ORDER BY posted DESC";
+        $sql = "SELECT * FROM comments WHERE topicid='$topicId' ORDER BY posted DESC";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         // if amount of entries in table is greater than 0, loop through entries and echo out
@@ -27,12 +27,12 @@ class Comment extends DBConn
     {
         $conn = $this->Connection();
         session_start();
-        $topicid = $_POST['topicid'];
+        $topicId = $_POST['topicid'];
         $author = $_SESSION['userUid'];
         $tz = 'Europe/London';
-        $timestamp = time();
+        $timeStamp = time();
         $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+        $dt->setTimestamp($timeStamp); //adjust the object to correct timestamp
         $posted = $dt->format('d/m/Y H:i:s');
         $pattern = array("[quote]", "[/quote]", "[br]", "<div>", "</div>", "[b]", "[/b]", "<i>", "</i>", "<a");
         $replace = array("<blockquote>", "</blockquote>", "<br>", "", "", "<b>", "</b>", "", "", "");
@@ -52,7 +52,7 @@ class Comment extends DBConn
                 header("Location: ../signup.php?error=sqlerror");
                 exit();
             } else {
-                mysqli_stmt_bind_param($stmt, "sssi", $author, $posted, $body, $topicid);
+                mysqli_stmt_bind_param($stmt, "sssi", $author, $posted, $body, $topicId);
                 mysqli_stmt_execute($stmt);
             }
             // update topics table to show time of most recent comment
@@ -62,7 +62,7 @@ class Comment extends DBConn
                 header("Location: ../signup.php?error=sqlerror");
                 exit();
             } else {
-                mysqli_stmt_bind_param($stmt, "si", $posted, $topicid);
+                mysqli_stmt_bind_param($stmt, "si", $posted, $topicId);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);

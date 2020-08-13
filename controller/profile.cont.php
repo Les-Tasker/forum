@@ -4,21 +4,21 @@ require_once 'model/UserHandler.class.php';
 //chekc if froms submitted
 if (isset($_POST['bio-submit'])) {
     //create new object
-    $User = new UserHandler;
+    $user = new UserHandler;
     //execute object method
-    $User->setUserBioHandler($_POST['bio'], $_SESSION['userId']);
+    $user->setUserBioHandler($_POST['bio'], $_SESSION['userId']);
 } //chekc if froms submitted
 else if (isset($_POST['cover-submit'])) {
     //create new object
-    $User = new UserHandler;
+    $user = new UserHandler;
     //execute object method
-    $User->setUserCoverImageHandler();
+    $user->setUserCoverImageHandler();
 } //chekc if froms submitted
 else if (isset($_POST['submit'])) {
     //create new object
-    $User = new UserHandler;
+    $user = new UserHandler;
     //execute object method
-    $User->setUserProfileImageHandler();
+    $user->setUserProfileImageHandler();
 } //if no form submitted, check if valid user logged in
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     //display profile

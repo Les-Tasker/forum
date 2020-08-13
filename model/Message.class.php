@@ -12,9 +12,9 @@ class Message extends DBConn
         $from = $_POST['fromUser'];
         $to = $_POST['toUser'];
         $tz = 'Europe/London';
-        $timestamp = time();
+        $timeStamp = time();
         $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+        $dt->setTimestamp($timeStamp); //adjust the object to correct timestamp
         $posted = $dt->format('d/m/Y H:i:s');
         $string = $_POST['message-body'];
         $url_pattern = '/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/';
@@ -23,11 +23,11 @@ class Message extends DBConn
         if ($from > $to) {
             $seed = $from . $to;
             srand($seed);
-            $conID = rand();
+            $conId = rand();
         } else {
             $seed = $to . $from;
             srand($seed);
-            $conID = rand();
+            $conId = rand();
         }
         if (empty($body)) {
             // header("Location: ../profile.php?error=emptyfields");
@@ -44,8 +44,8 @@ class Message extends DBConn
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../signup.php?error=sqlerror");
                 } else {
-                    $msgstatus = "DELIVERED";
-                    mysqli_stmt_bind_param($stmt, "iissis", $from, $to, $body, $posted, $conID, $msgstatus);
+                    $msgStatus = "DELIVERED";
+                    mysqli_stmt_bind_param($stmt, "iissis", $from, $to, $body, $posted, $conId, $msgStatus);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
                     mysqli_close($conn);
@@ -61,15 +61,15 @@ class Message extends DBConn
         $from = $_POST['fromUser'];
         $to = $_POST['toUser'];
         $tz = 'Europe/London';
-        $timestamp = time();
+        $timeStamp = time();
         $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+        $dt->setTimestamp($timeStamp); //adjust the object to correct timestamp
         $posted = $dt->format('d/m/Y H:i:s');
         $string = $_POST['message-body'];
         $url_pattern = '/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/';
         $string = preg_replace($url_pattern, '<a target="_blank" href="$0">$0</a>', $string);
         $body = $string;
-        $conID = $_POST['conID'];
+        $conId = $_POST['conID'];
         if (empty($body)) {
             // header("Location: ../profile.php?error=emptyfields");
             header("location:" . $_SERVER['HTTP_REFERER'] . '#reply-message');
@@ -85,8 +85,8 @@ class Message extends DBConn
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../signup.php?error=sqlerror");
                 } else {
-                    $msgstatus = "DELIVERED";
-                    mysqli_stmt_bind_param($stmt, "iissis", $from, $to, $body, $posted, $conID, $msgstatus);
+                    $msgStatus = "DELIVERED";
+                    mysqli_stmt_bind_param($stmt, "iissis", $from, $to, $body, $posted, $conId, $msgStatus);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
                     mysqli_close($conn);
@@ -95,10 +95,10 @@ class Message extends DBConn
             }
         }
     }
-    protected function getMessages($conID)
+    protected function getMessages($conId)
     {
         $conn = $this->Connection();
-        $sql = "SELECT * FROM messages  WHERE conID = '$conID'";
+        $sql = "SELECT * FROM messages  WHERE conID = '$conId'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         if ($resultCheck > 0) {
@@ -106,7 +106,7 @@ class Message extends DBConn
             return $result;
         }
     }
-    protected function setMsgStatus($conID, $user)
+    protected function setMsgStatus($conId, $user)
     {
         $conn = $this->Connection();
         $sql = "UPDATE messages SET msgstatus = 'SEEN' WHERE conID = ? AND toID = ?";
@@ -114,16 +114,16 @@ class Message extends DBConn
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../signup.php?error=sqlerror");
         } else {
-            mysqli_stmt_bind_param($stmt, "si", $conID, $user);
+            mysqli_stmt_bind_param($stmt, "si", $conId, $user);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
         }
     }
-    protected function getInbox($userID)
+    protected function getInbox($userId)
     {
         $conn = $this->Connection();
-        $sql = "SELECT * FROM messages where toID = '$userID' OR fromID = '$userID' GROUP BY conID ORDER BY ts DESC ";
+        $sql = "SELECT * FROM messages where toID = '$userId' OR fromID = '$userId' GROUP BY conID ORDER BY ts DESC ";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         if ($resultCheck > 0) {
@@ -131,10 +131,10 @@ class Message extends DBConn
             return $result;
         }
     }
-    protected function getNewMessageNotification($conID, $toid)
+    protected function getNewMessageNotification($conId, $toId)
     {
         $conn = $this->Connection();
-        $sql = "SELECT * FROM messages where conID = $conID AND toID = $toid AND msgstatus = 'DELIVERED'";
+        $sql = "SELECT * FROM messages where conID = $conId AND toID = $toId AND msgstatus = 'DELIVERED'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         if ($resultCheck > 0) {

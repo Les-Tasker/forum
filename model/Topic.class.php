@@ -16,11 +16,11 @@ class Topic extends DBConn
         $course = $_POST['course'];
         $category = $_POST['category'];
         $author = $_SESSION['userUid'];
-        $authorimg = $_SESSION['userImg'];
+        $authorImg = $_SESSION['userImg'];
         $tz = 'Europe/London';
-        $timestamp = time();
+        $timeStamp = time();
         $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+        $dt->setTimestamp($timeStamp); //adjust the object to correct timestamp
         $posted = $dt->format('d/m/Y H:i:s');
         $url_pattern = '/(http|https|www|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/';
         $string = preg_replace($url_pattern, '<a target="_blank" href="$0">$0</a>', $string);
@@ -38,7 +38,7 @@ class Topic extends DBConn
                 header("Location: signup.php?error=sqlerror");
                 exit();
             } else {
-                mysqli_stmt_bind_param($stmt, "ssssssss", $author, $title, $body, $posted, $authorimg, $campus, $course, $category);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $author, $title, $body, $posted, $authorImg, $campus, $course, $category);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);

@@ -54,17 +54,17 @@ function displayAux($aux)
         if (empty($comment)) {
         } else {
             foreach ($comment as $row) {
-                $useruid = $_SESSION['userUid'];
-                $commentbody = $row['body'];
-                $commentid = $row['id'];
+                $userUid = $_SESSION['userUid'];
+                $commentBody = $row['body'];
+                $commentId = $row['id'];
                 $poster = $row['author'];
                 $posterComment = nl2br($row['body']);
                 $posterDate = $row['posted'];
-                $User = new UserHandler;
-                $User->getUserInfoByUsernameHandler($poster); ?>
-        <div class="forum-topic-post" id="<?php echo 'post-' . $commentid ?>">
+                $user = new UserHandler;
+                $user->getUserInfoByUsernameHandler($poster); ?>
+        <div class="forum-topic-post" id="<?php echo 'post-' . $commentId ?>">
             <div class="forum-topic-post-poster">
-                <img class="comment-img" src="uploads/<?php echo $User->Userimage ?>" />
+                <img class="comment-img" src="uploads/<?php echo $user->Userimage ?>" />
                 <a class="forum-topic-post-poster-author border-left"
                     href="./viewprofile.php?author=<?php echo $poster ?>"> <?php echo $poster ?> </a>
             </div>
@@ -73,17 +73,17 @@ function displayAux($aux)
                     <?php echo $posterComment ?>
                 </p>
 
-                <h6>Posted on: <?php echo $posterDate ?><br>Post #<?php echo $commentid ?></h6>
+                <h6>Posted on: <?php echo $posterDate ?><br>Post #<?php echo $commentId ?></h6>
                 <form class="edit-controls-form" action="topic.php" method="POST">
                     <div class="edit-controls">
                         <input type="hidden" name="author" value="<?php echo $poster ?>">
-                        <input type="hidden" name="commentid" value="<?php echo $commentid ?>">
-                        <input type="hidden" name="commentcontent" value='<?php echo $commentbody ?>'>
+                        <input type="hidden" name="commentid" value="<?php echo $commentId ?>">
+                        <input type="hidden" name="commentcontent" value='<?php echo $commentBody ?>'>
                         <button id="test-btn" name="comment-quote-submit">Reply
                             <img src="img/post-quote.png" alt="">
                         </button>
                         <?php
-                                    if ($useruid == $row['author']) { ?>
+                                    if ($userUid == $row['author']) { ?>
                         <button id="test-btn" name="comment-edit-submit">Edit <img src="img/post-edit.png"
                                 alt=""></button>
                         <button id="test-btn" name="comment-delete-submit"
@@ -102,11 +102,11 @@ function displayAux($aux)
             <input type="hidden" name="topicid" value="<?php echo $_GET['id'] ?>">
             <textarea name="comment-body" id="comment-body" rows="3"
                 placeholder="Post something..."><?php if (isset($_GET['quotecomment'])) {
-                                                                                                                $NewCommentQuote = new CommentHandler;
-                                                                                                                $NewCommentQuote->commentQuoteProcessHandler($_GET['quotecomment']);
+                                                                                                                $newCommentQuote = new CommentHandler;
+                                                                                                                $newCommentQuote->commentQuoteProcessHandler($_GET['quotecomment']);
                                                                                                             } elseif (isset($_GET['quotetopic'])) {
-                                                                                                                $NewTopicQuote = new TopicHandler;
-                                                                                                                $NewTopicQuote->topicQuoteProcessHandler($_GET['quotetopic']);
+                                                                                                                $newTopicQuote = new TopicHandler;
+                                                                                                                $newTopicQuote->topicQuoteProcessHandler($_GET['quotetopic']);
                                                                                                             } ?></textarea>
 
             <button id="comment-body-submit" type="submit" name="comment-submit">Post</button>
@@ -139,8 +139,8 @@ function displayAux($aux)
                         if (empty($topic)) {
                         } else {
                             foreach ($topic as $row) {
-                                $userid = $_SESSION['userId'];
-                                $useruid = $_SESSION['userUid'];
+                                $userId = $_SESSION['userId'];
+                                $userUid = $_SESSION['userUid'];
                                 $id = $_GET['id'];
                                 $topicBody = nl2br($row['body']);
                         ?>
@@ -163,7 +163,7 @@ function displayAux($aux)
                     <form class="edit-comment-form hidden" id="<?php echo 'edittopic-' . $id ?>" action="topic.php"
                         method="POST">
                         <div class="edit-comment">
-                            <input type="hidden" name="author" value="<?php echo $useruid ?>">
+                            <input type="hidden" name="author" value="<?php echo $userUid ?>">
                             <input type="hidden" name="topic-id" value="<?php echo $id ?>">
                             <textarea name="topic-edit" id="edit-textarea" rows="10"><?php echo $topicBody ?></textarea>
                             <div class="buttons">
@@ -182,14 +182,14 @@ function displayAux($aux)
                     <!-- Topic controls for interacting with posts -->
                     <form class="edit-controls-form" action="topic.php" method="POST">
                         <div class="edit-controls">
-                            <input type="hidden" name="author" value="<?php echo $useruid ?>">
+                            <input type="hidden" name="author" value="<?php echo $userUid ?>">
                             <input type="hidden" name="commentid" value="<?php echo $_GET['id'] ?>">
                             <input type="hidden" name="commentcontent" value="<?php $topicBody ?>">
                             <button id="test-btn" name="topic-quote-submit">Reply <img src="img/post-quote.png" alt="">
                             </button>
                             <?php
                                                 // If logged in user is post author, enable additional controls for editing and deleting Posts/Topics
-                                                if ($useruid == $row['author']) { ?>
+                                                if ($userUid == $row['author']) { ?>
                             <button onclick='editTopic(<?php echo $id ?>)' type="button" id="test-btn"
                                 name="comment-edit-submit">Edit
                                 <img src="img/post-edit.png" alt=""></button>
@@ -208,55 +208,55 @@ function displayAux($aux)
                         } else {
 
                             foreach ($comment as $row) {
-                                $commentbody = $row['body'];
-                                $commentid = $row['id'];
+                                $commentBody = $row['body'];
+                                $commentId = $row['id'];
                                 $poster = $row['author'];
                                 $posterComment = nl2br($row['body']);
                                 $posterDate = $row['posted'];
-                                $User = new UserHandler;
-                                $User->getUserInfoByUsernameHandler($poster); ?>
-            <div class="forum-topic-post" id="<?php echo 'post-' . $commentid ?>">
+                                $user = new UserHandler;
+                                $user->getUserInfoByUsernameHandler($poster); ?>
+            <div class="forum-topic-post" id="<?php echo 'post-' . $commentId ?>">
                 <div class="forum-topic-post-poster">
-                    <img class="comment-img" src="uploads/<?php echo $User->Userimage ?>" />
+                    <img class="comment-img" src="uploads/<?php echo $user->Userimage ?>" />
                     <a class="forum-topic-post-poster-author border-left"
                         href="./viewprofile.php?author=<?php echo $poster ?>"> <?php echo $poster ?> </a>
                 </div>
                 <div class="forum-topic-post-content">
                     <!-- Id for Javascript funciton -->
-                    <p id="<?php echo 'originalpost-' . $commentid ?>">
+                    <p id="<?php echo 'originalpost-' . $commentId ?>">
                         <?php echo $posterComment ?>
                     </p>
                     <!-- edit comment -->
                     <!-- Hideen for for Javascript function for ediditng posts -->
-                    <form class="edit-comment-form hidden" id="<?php echo 'editcomment-' . $commentid ?>"
+                    <form class="edit-comment-form hidden" id="<?php echo 'editcomment-' . $commentId ?>"
                         action="topic.php" method="POST">
                         <div class="edit-comment">
-                            <input type="hidden" name="author" value="<?php echo $useruid ?>">
-                            <input type="hidden" name="comment-id" value="<?php echo $commentid ?>">
+                            <input type="hidden" name="author" value="<?php echo $userUid ?>">
+                            <input type="hidden" name="comment-id" value="<?php echo $commentId ?>">
                             <textarea name="comment-edit" id="edit-textarea"
-                                rows="10"><?php echo $commentbody ?></textarea>
+                                rows="10"><?php echo $commentBody ?></textarea>
                             <div class="buttons">
                                 <button class="comment-edit-cancel" type="button"
-                                    onclick="editCommentCancel(<?php echo $commentid ?>)">Cancel</button>
+                                    onclick="editCommentCancel(<?php echo $commentId ?>)">Cancel</button>
                                 <button class="comment-edit-submit" type="submit"
                                     name="comment-edit-submit">Save</button>
                             </div>
                         </div>
                     </form>
                     <!-- edit comment -->
-                    <h6>Posted on: <?php echo $posterDate ?><br>Post #<?php echo $commentid ?></h6>
+                    <h6>Posted on: <?php echo $posterDate ?><br>Post #<?php echo $commentId ?></h6>
                     <!-- Controls for interacting with posts -->
                     <form class="edit-controls-form" action="topic.php" method="POST">
                         <div class="edit-controls">
                             <input type="hidden" name="author" value="<?php echo $poster ?>">
-                            <input type="hidden" name="commentid" value="<?php echo $commentid ?>">
-                            <input type="hidden" name="commentcontent" value='<?php $commentbody ?>'>
+                            <input type="hidden" name="commentid" value="<?php echo $commentId ?>">
+                            <input type="hidden" name="commentcontent" value='<?php $commentBody ?>'>
                             <button id="test-btn" name="comment-quote-submit">Reply <img src="img/post-quote.png"
                                     alt=""> </button>
                             <?php
                                                 // If logged in user is post author, enable extra controls for editing and deleting
-                                                if ($useruid == $row['author']) { ?>
-                            <button onclick='editComment(<?php echo $commentid ?>)' type="button" id="test-btn"
+                                                if ($userUid == $row['author']) { ?>
+                            <button onclick='editComment(<?php echo $commentId ?>)' type="button" id="test-btn"
                                 name="comment-edit-submit">Edit
                                 <img src="img/post-edit.png" alt=""></button>
                             <button id="test-btn" name="comment-delete-submit"
@@ -272,15 +272,15 @@ function displayAux($aux)
             <!-- Reply area for submitting posts to topic -->
             <form id="comment-form" action="topic.php" method="POST">
                 <h5>Reply</h5>
-                <input type="hidden" name="author" value="<?php $userid ?>">
+                <input type="hidden" name="author" value="<?php $userId ?>">
                 <input type="hidden" name="topicid" value="<?php echo $id ?>">
                 <textarea name="comment-body" id="comment-body" rows="3"
                     placeholder="Post something..."><?php if (isset($_GET['quotecomment'])) {
-                                                                                                                            $NewCommentQuote = new CommentHandler;
-                                                                                                                            $NewCommentQuote->commentQuoteProcessHandler($_GET['quotecomment']);
+                                                                                                                            $newCommentQuote = new CommentHandler;
+                                                                                                                            $newCommentQuote->commentQuoteProcessHandler($_GET['quotecomment']);
                                                                                                                         } else if (isset($_GET['quotetopic'])) {
-                                                                                                                            $NewTopicQuote = new TopicHandler;
-                                                                                                                            $NewTopicQuote->topicQuoteProcessHandler($_GET['quotetopic']);
+                                                                                                                            $newTopicQuote = new TopicHandler;
+                                                                                                                            $newTopicQuote->topicQuoteProcessHandler($_GET['quotetopic']);
                                                                                                                         } ?></textarea>
                 <button id="comment-body-submit" type="submit" name="comment-submit">Post</button>
             </form>

@@ -2,14 +2,14 @@
 
 require 'header.php';
 if (isset($_POST['submit'])) {
-    $NewUser = new UserHandler;
-    $NewUser->updateUserPasswordHandler();
+    $newUser = new UserHandler;
+    $newUser->updateUserPasswordHandler();
 }
 if (isset($_GET['mail']) && (isset($_GET['vcode']))) {
     $email = $_GET['mail'];
-    $NewUser = new UserHandler;
-    $NewUser->getUserInfoByEmailHandler($email);
-    if ($_GET['vcode'] == $NewUser->Uservcode) {
+    $newUser = new UserHandler;
+    $newUser->getUserInfoByEmailHandler($email);
+    if ($_GET['vcode'] == $newUser->Uservcode) {
         require "view/pwreset.view.php";
     } else {
 ?>

@@ -1,7 +1,7 @@
 <?php function displayProfile()
 {
-    $User = new UserHandler;
-    $User->getUserInfoByIdHandler($_SESSION['userId']);
+    $user = new UserHandler;
+    $user->getUserInfoByIdHandler($_SESSION['userId']);
 ?>
 <div class="profile-container">
     <div class="profile-banner">
@@ -9,15 +9,15 @@
             <span>Update Cover Image</span>
             <img id="cover-plus-icon" alt="Add new image" src="img/addimg.png" />
         </div>
-        <img src="uploads/<?php echo $User->Usercover ?>" alt="">
+        <img src="uploads/<?php echo $user->Usercover ?>" alt="">
     </div>
     <div class="profile-container-wrapper">
         <div class="profile-container-left">
             <div class="profile-image-container">
-                <img class="profile-img" src="uploads/<?php echo $User->Userimage ?>" alt="Profile Image" />
+                <img class="profile-img" src="uploads/<?php echo $user->Userimage ?>" alt="Profile Image" />
                 <img id="plus-icon" alt="Add new image" src="img/addimg.png" onclick="profileImage()" />
-                <h1 class="profile-info"><?php echo $User->Username ?> <img class="user-course-badge"
-                        src="./img/<?php echo $User->Usercourse . ".png" ?>" alt="Profile Image" />
+                <h1 class="profile-info"><?php echo $user->Username ?> <img class="user-course-badge"
+                        src="./img/<?php echo $user->Usercourse . ".png" ?>" alt="Profile Image" />
                 </h1>
 
                 <?php
@@ -36,20 +36,11 @@
                 <div class="profile-content">
                     <div class="profile-title">
                         <h3 class="profile-info">
-                            <?php echo ucwords($User->Userfirstname) . " " . ucwords($User->Userlastname) ?></h3>
+                            <?php echo ucwords($user->Userfirstname) . " " . ucwords($user->Userlastname) ?></h3>
                         <h3 class="profile-info"><?php echo ucwords($_SESSION['userCampus']) ?></h3>
-                        <h3 class="profile-info" id="profile-course"><?php echo ucwords($User->Usercourse) ?></h3>
+                        <h3 class="profile-info" id="profile-course"><?php echo ucwords($user->Usercourse) ?></h3>
                     </div>
-                    <!-- <div class="profile-social">
-                        <a href="<?php echo $_SESSION['userFace'] ?>" target="_blank"><img class="soc-icon"
-                                src="img/facebook.png" alt="Facebook Logo"></a>
-                        <a href="<?php echo $_SESSION['userTwit'] ?>" target="_blank"><img class="soc-icon"
-                                src="img/twitter.png" alt="Twitter Logo"></a>
-                        <a href="<?php echo $_SESSION['userLinked'] ?>" target="_blank"><img class="soc-icon"
-                                src="img/linkedin.png" alt="Linked In Logo"></a>
-                        <a href="<?php echo $_SESSION['userInsta'] ?>" target="_blank"><img class="soc-icon"
-                                src="img/instagram.png" alt="Instagram Logo"></a>
-                    </div> -->
+
                 </div>
             </div>
         </div>
@@ -58,7 +49,7 @@
                 <h2>About me<img id="edit-profile" src="img/edit.png" alt="Edit Bio" onclick="bioEdit()" />
                     <hr>
                 </h2>
-                <p id="user-bio"><?php echo nl2br($User->Userbio) ?></p>
+                <p id="user-bio"><?php echo nl2br($user->Userbio) ?></p>
                 <form action="profile.php" method="post" id="bio-form" class="hidden">
                     <textarea name="bio" id="bio-form-textarea" cols="30" rows="10"></textarea>
                     <div>
@@ -74,7 +65,7 @@
         <img id="exit-profile" src="img/plus.png" onclick="profileImage2()" />
         <div class="upload-form-inner">
             <h2>Upload New Profile Image</h2>
-            <img class="profile-img" src="./uploads/<?php echo $User->Userimage ?>" alt="icon" />
+            <img class="profile-img" src="./uploads/<?php echo $user->Userimage ?>" alt="icon" />
             <div class="profile-button-wrapper">
                 <label id="img-up-browse" for="my-file-selector">
                     <input id="my-file-selector" type="file" name="file" accept="image/*" style="display:none"
@@ -92,7 +83,7 @@
         <div class="upload-form-inner">
             <h2>Upload New Cover Image</h2>
             <h6>recommended size: 900x300px</h6>
-            <img class="cover-img" src="./uploads/<?php echo $User->Usercover ?>" alt="icon" />
+            <img class="cover-img" src="./uploads/<?php echo $user->Usercover ?>" alt="icon" />
             <div class="profile-button-wrapper">
                 <label id="img-up-browse" for="my-file-selector2">
                     <input id="my-file-selector2" type="file" name="file" accept="image/*" style="display:none"

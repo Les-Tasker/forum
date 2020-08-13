@@ -1,13 +1,13 @@
 <div class="main-content">
     <div class="outline">
         <?php
-        $Message = new MessageHandler;
-        $messages = $Message->getMessagesHandler($_GET['conID']);
-        $NewUser = new UserHandler;
+        $message = new MessageHandler;
+        $messages = $message->getMessagesHandler($_GET['conID']);
+        $newUser = new UserHandler;
         ?>
 
-        <h2>Messages to <?php $NewUser->getUserInfoByIdHandler($_GET['toID']);
-                        echo $NewUser->Username; ?></h2>
+        <h2>Messages to <?php $newUser->getUserInfoByIdHandler($_GET['toID']);
+                        echo $newUser->Username; ?></h2>
 
         <?php
         if (empty($messages)) {
@@ -18,20 +18,20 @@
                     $stat = strtolower($row['msgstatus']);
                     if ($_SESSION['userId'] == $row['toID']) {
                         $conID = $_GET['conID'];
-                        $Message->setMsgStatusHandler($conID, $_SESSION['userId']);
+                        $message->setMsgStatusHandler($conID, $_SESSION['userId']);
                     }
         ?>
         <div class="forum-topic-post">
             <div class="forum-topic-post-poster">
-                <img class="comment-img" src="uploads/<?php $NewUser->getUserInfoByIdHandler($row['fromID']);
-                                                                    echo $NewUser->Userimage; ?>">
+                <img class="comment-img" src="uploads/<?php $newUser->getUserInfoByIdHandler($row['fromID']);
+                                                                    echo $newUser->Userimage; ?>">
                 <a class="forum-topic-post-poster-author"
-                    href="./viewprofile.php?author=<?php $NewUser->getUserInfoByIdHandler($row['fromID']);
-                                                                                                        echo $NewUser->Username; ?>">
+                    href="./viewprofile.php?author=<?php $newUser->getUserInfoByIdHandler($row['fromID']);
+                                                                                                        echo $newUser->Username; ?>">
 
 
-                    <?php $NewUser->getUserInfoByIdHandler($row['fromID']);
-                                echo $NewUser->Username; ?></a>
+                    <?php $newUser->getUserInfoByIdHandler($row['fromID']);
+                                echo $newUser->Username; ?></a>
             </div>
             <div class="forum-topic-post-content">
                 <p><?php echo $row['msg'] ?>

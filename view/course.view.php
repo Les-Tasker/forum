@@ -23,7 +23,7 @@ function displayCourse($course)
             if (empty($course)) {
                 header("Location: 404.php");
             } else {
-                $CourseCount = new CourseHandler;
+                $courseCount = new CourseHandler;
                 foreach ($course as $row) { ?>
         <div class="forum-category">
             <img class="topic-logo" src="img/<?php echo $row['course'] . ".png" ?>">
@@ -32,7 +32,7 @@ function displayCourse($course)
                     href="category.php?campus=<?php echo $_GET['campus'] ?>&course=<?php echo  $row['course'] ?>"><?php echo ucfirst($row['course']) ?></a>
             </div>
             <div class="topic-post-count">Topics:
-                <?php $CourseCount->courseTopicCountHandler($_GET['campus'], $row['course']) ?>
+                <?php $courseCount->courseTopicCountHandler($_GET['campus'], $row['course']) ?>
             </div>
         </div>
         <?php

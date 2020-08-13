@@ -6,12 +6,12 @@ class CourseHandler extends Course
 
     public function getCoursesHandler()
     {
-        $CourseHandler = $this->getCourses();
-        return $CourseHandler;
+        $courseHandler = $this->getCourses();
+        return $courseHandler;
     }
     public function courseTopicCountHandler($campusName, $courseName)
     {
-        $CourseHandler = $this->courseTopicCount($campusName, $courseName);
-        return $CourseHandler;
+        $courseHandler = $this->courseTopicCount($campusName, $courseName);
+        return $courseHandler;
     }
 }

@@ -11,29 +11,29 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
         require_once 'model/CampusHandler.class.php';
         require_once 'model/CategoryHandler.class.php';
         require_once "view/topiclist.view.php";
-        $Course = new CourseHandler;
-        $CourseList = $Course->getCoursesHandler();
-        $Campus = new CampusHandler;
-        $CampusList = $Campus->getCampusHandler();
-        $Category = new CategoryHandler;
-        $CategoryList = $Category->getCategoryHandler();
+        $course = new CourseHandler;
+        $courseList = $course->getCoursesHandler();
+        $campus = new CampusHandler;
+        $campusList = $campus->getCampusHandler();
+        $category = new CategoryHandler;
+        $categoryList = $category->getCategoryHandler();
         //create array to store object values
-        $CampusArray = [];
-        $CourseArray = [];
-        $CategoryArray = [];
+        $campusArray = [];
+        $courseArray = [];
+        $categoryArray = [];
         //loop objects and add values to array
-        foreach ($CampusList as $item) {
-            array_push($CampusArray, $item['campus']);
+        foreach ($campusList as $item) {
+            array_push($campusArray, $item['campus']);
         }
-        foreach ($CourseList as $item) {
-            array_push($CourseArray, $item['course']);
+        foreach ($courseList as $item) {
+            array_push($courseArray, $item['course']);
         }
-        foreach ($CategoryList as $item) {
-            array_push($CategoryArray, $item['category']);
+        foreach ($categoryList as $item) {
+            array_push($categoryArray, $item['category']);
         }
-        if (in_array($_GET['campus'], $CampusArray) && in_array($_GET['course'], $CourseArray) && in_array($_GET['category'], $CategoryArray)) {
-            $NewTopic = new TopicHandler;
-            $topic = $NewTopic->getTopicListHandler($_GET['course'], $_GET['campus'], $_GET['category']);
+        if (in_array($_GET['campus'], $campusArray) && in_array($_GET['course'], $courseArray) && in_array($_GET['category'], $categoryArray)) {
+            $newTopic = new TopicHandler;
+            $topic = $newTopic->getTopicListHandler($_GET['course'], $_GET['campus'], $_GET['category']);
             displayTopicList($topic);
         } else {
             // if false, user has attempted to manipulate URL or followed a bad link

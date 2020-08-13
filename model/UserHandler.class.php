@@ -13,72 +13,72 @@ class UserHandler extends User
 
     public function getUserInfoByIdHandler($id)
     {
-        $UserHandler = $this->getUserInfoById($id);
+        $userHandler = $this->getUserInfoById($id);
 
-        return $UserHandler;
+        return $userHandler;
     }
 
     public function getUserInfoByEmailHandler($email)
     {
-        $UserHandler = $this->getUserInfoByEmail($email);
-        return $UserHandler;
+        $userHandler = $this->getUserInfoByEmail($email);
+        return $userHandler;
     }
 
     public function getUserInfoByUsernameHandler($uid)
     {
-        $UserHandler = $this->getUserInfoByUsername($uid);
-        return $UserHandler;
+        $userHandler = $this->getUserInfoByUsername($uid);
+        return $userHandler;
     }
     public function setUserBioHandler($text, $id)
     {
-        $UserHandler = $this->setUserBio($text, $id);
-        return $UserHandler;
+        $userHandler = $this->setUserBio($text, $id);
+        return $userHandler;
     }
     public function displayUnreadMessageHandler($user)
     {
-        $UserHandler = $this->displayUnreadMessage($user);
-        return $UserHandler;
+        $userHandler = $this->displayUnreadMessage($user);
+        return $userHandler;
     }
     public function verifyNewUserHandler($email, $vcode)
     {
-        $UserHandler = $this->verifyNewUser($email, $vcode);
-        return $UserHandler;
+        $userHandler = $this->verifyNewUser($email, $vcode);
+        return $userHandler;
     }
 
     public function setUserProfileImageHandler()
     {
-        $UserHandler = $this->setUserProfileImage();
-        return $UserHandler;
+        $userHandler = $this->setUserProfileImage();
+        return $userHandler;
     }
 
     public function setUserCoverImageHandler()
     {
-        $UserHandler = $this->setUserCoverImage();
-        return $UserHandler;
+        $userHandler = $this->setUserCoverImage();
+        return $userHandler;
     }
     public function signupNewUserHandler()
     {
-        $UserHandler = $this->signupNewUser();
-        return $UserHandler;
+        $userHandler = $this->signupNewUser();
+        return $userHandler;
     }
     public function userForgotPasswordHandler()
     {
-        $UserHandler = $this->userForgotPassword();
-        return $UserHandler;
+        $userHandler = $this->userForgotPassword();
+        return $userHandler;
     }
     public function updateUserPasswordHandler()
     {
-        $UserHandler = $this->updateUserPassword();
-        return $UserHandler;
+        $userHandler = $this->updateUserPassword();
+        return $userHandler;
     }
     public function userLogInHandler()
     {
-        $UserHandler = $this->userLogIn();
-        return $UserHandler;
+        $userHandler = $this->userLogIn();
+        return $userHandler;
     }
     public function userLogOutHandler()
     {
-        $UserHandler = $this->userLogOut();
-        return $UserHandler;
+        $userHandler = $this->userLogOut();
+        return $userHandler;
     }
 }

@@ -5,9 +5,9 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     require_once 'model/CampusHandler.class.php';
     require_once 'model/TopicHandler.class.php';
     //create new object
-    $NewCampus = new CampusHandler;
+    $newCampus = new CampusHandler;
     //execute object method
-    $campus = $NewCampus->getCampusHandler();
+    $campus = $newCampus->getCampusHandler();
     //load view and display
     require_once 'view/index.view.php';
     displayCampus($campus);

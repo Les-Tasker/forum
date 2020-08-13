@@ -21,7 +21,7 @@
                     alt="SAE Logo" /></a>
             <?php
             if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
-                $ShowUnread = new UserHandler;
+                $showUnread = new UserHandler;
             ?>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
                         <a class="dropdown-item" href="profile.php">Profile <img src="img/profile.png"></a>
                         <a class="dropdown-item" href="inbox.php">
                             Inbox <img src="img/inbox.png"> <span
-                                class="unread"><?php $ShowUnread->displayUnreadMessageHandler($_SESSION['userId']) ?></span>
+                                class="unread"><?php $showUnread->displayUnreadMessageHandler($_SESSION['userId']) ?></span>
                         </a>
                         <a class="dropdown-item" href="#">
                             <form action="header.php" method="post">

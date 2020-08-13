@@ -6,7 +6,7 @@ class DBConnHandler extends DBConn
 
     public function connectionHandler()
     {
-        $DBConnHandler = $this->Connection();
-        return $DBConnHandler;
+        $dbConnHandler = $this->Connection();
+        return $dbConnHandler;
     }
 }

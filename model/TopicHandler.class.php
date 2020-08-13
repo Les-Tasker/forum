@@ -7,52 +7,52 @@ class TopicHandler extends Topic
 
     public function setNewTopicHandler()
     {
-        $TopicHandler = $this->setNewTopic();
-        return $TopicHandler;
+        $topicHandler = $this->setNewTopic();
+        return $topicHandler;
     }
     public function campusTopicCountHandler($campusName)
     {
-        $TopicHandler = $this->campusTopicCount($campusName);
-        return $TopicHandler;
+        $topicHandler = $this->campusTopicCount($campusName);
+        return $topicHandler;
     }
     public function getTopicListHandler($courseName, $campusName, $categoryName)
     {
-        $TopicHandler = $this->getTopicList($courseName, $campusName, $categoryName);
-        return $TopicHandler;
+        $topicHandler = $this->getTopicList($courseName, $campusName, $categoryName);
+        return $topicHandler;
     }
     public function getTopicByIdHandler($id)
     {
-        $TopicHandler = $this->getTopicById($id);
-        return $TopicHandler;
+        $topicHandler = $this->getTopicById($id);
+        return $topicHandler;
     }
     public function getAuxTopicHandler($aux)
     {
-        $TopicHandler = $this->getAuxTopic($aux);
-        return $TopicHandler;
+        $topicHandler = $this->getAuxTopic($aux);
+        return $topicHandler;
     }
     public function topicQuoteHandler()
     {
-        $TopicHandler = $this->topicQuote();
-        return $TopicHandler;
+        $topicHandler = $this->topicQuote();
+        return $topicHandler;
     }
     public function topicQuoteProcessHandler($id)
     {
-        $TopicHandler = $this->topicQuoteProcess($id);
-        return $TopicHandler;
+        $topicHandler = $this->topicQuoteProcess($id);
+        return $topicHandler;
     }
     public function topicEditHandler()
     {
-        $TopicHandler = $this->topicEdit();
-        return $TopicHandler;
+        $topicHandler = $this->topicEdit();
+        return $topicHandler;
     }
     public function topicDeleteHandler()
     {
-        $TopicHandler = $this->topicDelete();
-        return $TopicHandler;
+        $topicHandler = $this->topicDelete();
+        return $topicHandler;
     }
     public function searchResultHandler($search)
     {
-        $TopicHandler = $this->searchResult($search);
-        return $TopicHandler;
+        $topicHandler = $this->searchResult($search);
+        return $topicHandler;
     }
 }

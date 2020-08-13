@@ -4,18 +4,18 @@ if (isset($_POST['message-submit'])) {
     //load required files
     require_once "model/MessageHandler.class.php";
     //create new object
-    $Message = new MessageHandler;
+    $message = new MessageHandler;
     //execute object method
-    $Message->sendMessageFromProfileHandler();
+    $message->sendMessageFromProfileHandler();
 }
 //if new message submitted from inbox 
 else if (isset($_POST['message-reply-submit'])) {
     //load required files
     require_once "model/MessageHandler.class.php";
     //create new object
-    $Message = new MessageHandler;
+    $message = new MessageHandler;
     //execute object method
-    $Message->ReplyInboxHandler();
+    $message->ReplyInboxHandler();
 }
 //if no forms submitted, check for valid logged in user
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {

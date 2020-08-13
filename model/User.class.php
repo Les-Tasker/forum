@@ -10,7 +10,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 class User extends DBConn
 {
     //Create attributes for database table Users
-    public $Username;
+    public $UserName;
     public $Usermail;
     public $Userimage;
     public $Usercover;
@@ -129,7 +129,7 @@ class User extends DBConn
             echo '0';
         }
     }
-    protected function verifyNewUser($email, $vcode)
+    protected function verifyNewUser($email, $vCode)
     {
         $conn = $this->Connection();
         $sql = "UPDATE users SET verifiedUsers='TRUE' WHERE  emailUsers=? AND vcodeUsers=?";
@@ -138,7 +138,7 @@ class User extends DBConn
             header("Location: ../signup.php?error=sqlerror");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "ss", $email, $vcode);
+            mysqli_stmt_bind_param($stmt, "ss", $email, $vCode);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
@@ -266,17 +266,17 @@ class User extends DBConn
     {
         $conn = $this->Connection();
         // Fetch signup form info
-        $username = mysqli_real_escape_string($conn, $_POST['uid']);
+        $userName = mysqli_real_escape_string($conn, $_POST['uid']);
         $email = mysqli_real_escape_string($conn, $_POST['mail']);
         $password = mysqli_real_escape_string($conn, $_POST['pwd']);
         $passwordRepeat = mysqli_real_escape_string($conn, $_POST['pwd-repeat']);
-        $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-        $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+        $fName = mysqli_real_escape_string($conn, $_POST['fname']);
+        $lName = mysqli_real_escape_string($conn, $_POST['lname']);
         $campus = mysqli_real_escape_string($conn, $_POST['campus']);
         $course = mysqli_real_escape_string($conn, $_POST['course']);
         //Create random string for email verification
         $str = rand();
-        $vcode = hash("sha256", $str);
+        $vCode = hash("sha256", $str);
         //prepare email setting for email verification
         $mail = new PHPMailer;
         $mail->IsSMTP();
@@ -292,14 +292,14 @@ class User extends DBConn
         $mail->AddAddress($email, "Admin");
         $mail->SetFrom("No-Reply@SAE-Student-Forums.com");
         $mail->Subject = "SAE Student Forum";
-        $content = "<b><h1>Activate your SAE Student Forum account</h1><br><a href='http://localhost/Login/controller/verify.cont.php?uid=" . "$username" . "&email=" . "$email" . "&vcode=" . "$vcode" . "'>Click here to activate your account</a><br><h1>This sender does not support replies</h1></b>";
+        $content = "<b><h1>Activate your SAE Student Forum account</h1><br><a href='http://localhost/Login/controller/verify.cont.php?uid=" . "$userName" . "&email=" . "$email" . "&vcode=" . "$vCode" . "'>Click here to activate your account</a><br><h1>This sender does not support replies</h1></b>";
         $mail->MsgHTML($content);
         // Form error check / Validate via PHP empty function
-        if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat) || empty($fname) || empty($lname) || empty($campus) || empty($course)) {
+        if (empty($userName) || empty($email) || empty($password) || empty($passwordRepeat) || empty($fName) || empty($lName) || empty($campus) || empty($course)) {
             // Send user back to signup page if signup fails, also sneds back partial form fill to save re-typing all fields
             header("Location: signup.php?error=emptyfields");
             // Legal character and email check
-        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $userName)) {
             header("Location: signup.php?error=invalidmailuid");
             // Email validation
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -313,11 +313,11 @@ class User extends DBConn
 
 
             // Username validation Regex 
-        } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        } else if (!preg_match("/^[a-zA-Z0-9]*$/", $userName)) {
             header("Location: signup.php?error=invaliduid");
-        } else if (!preg_match("/^[a-zA-Z]*$/", $fname)) {
+        } else if (!preg_match("/^[a-zA-Z]*$/", $fName)) {
             header("Location: signup.php?error=invalidfname");
-        } else if (!preg_match("/^[a-zA-Z]*$/", $lname)) {
+        } else if (!preg_match("/^[a-zA-Z]*$/", $lName)) {
             header("Location: signup.php?error=invalidlname");
         } else if (!preg_match("/^[a-zA-Z\s]*$/", $campus)) {
             header("Location: signup.php?error=invalidcampus");
@@ -341,12 +341,12 @@ class User extends DBConn
                 header("Location: signup.php?error=sqlerror");
             } else {
                 // if returned matching usernames = > 0 then no matching username exists so continue
-                mysqli_stmt_bind_param($stmt, "s", $username);
+                mysqli_stmt_bind_param($stmt, "s", $userName);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_store_result($stmt);
                 $resultCheck = mysqli_stmt_num_rows($stmt);
                 if ($resultCheck > 0) {
-                    header("Location: signup.php?error=usertaken&mail=" . $username);
+                    header("Location: signup.php?error=usertaken&mail=" . $userName);
 
                     // Check for conflicting Emails in Database
                 } else {
@@ -378,7 +378,7 @@ class User extends DBConn
                                     //Send account activation email
                                     // Hash password for security
                                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-                                    mysqli_stmt_bind_param($stmt, "ssssssss", $username, $email, $hashedPwd, $fname, $lname, $campus, $course, $vcode);
+                                    mysqli_stmt_bind_param($stmt, "ssssssss", $userName, $email, $hashedPwd, $fName, $lName, $campus, $course, $vCode);
                                     mysqli_stmt_execute($stmt);
                                     header("Location: signup.php?signup=success");
                                 }
@@ -401,7 +401,7 @@ class User extends DBConn
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $row = mysqli_fetch_assoc($result);
-        $vcode = $row['vcodeUsers'];
+        $vCode = $row['vcodeUsers'];
         if ($resultCheck > 0) {
             $mail = new PHPMailer();
             $mail->IsSMTP();
@@ -417,7 +417,7 @@ class User extends DBConn
             $mail->AddAddress($email, "Admin");
             $mail->SetFrom("No-Reply@SAE-Student-Forums.com");
             $mail->Subject = "SAE Student Forum";
-            $content = "<b><h1>Password Reset<br><a href='http://localhost/Login/pwreset.php?mail=" . "$email" . "&vcode=" . "$vcode" . "'>Click here to reset your password</a></h1></b>";
+            $content = "<b><h1>Password Reset<br><a href='http://localhost/Login/pwreset.php?mail=" . "$email" . "&vcode=" . "$vCode" . "'>Click here to reset your password</a></h1></b>";
             $mail->MsgHTML($content);
             ob_start();
             if (!$mail->Send()) {
@@ -433,20 +433,20 @@ class User extends DBConn
     protected function updateUserPassword()
     {
         $conn = $this->Connection();
-        $vcode = $_POST['vcode'];
+        $vCode = $_POST['vcode'];
         $mail = $_POST['mail'];
         $password = $_POST['password'];
         $passwordRepeat = $_POST['passwordrepeat'];
         if (strlen($password) <= '8') {
-            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=password8");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vCode . "&error=password8");
         } elseif (!preg_match("#[0-9]+#", $password)) {
-            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordnum");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vCode . "&error=passwordnum");
         } elseif (!preg_match("#[A-Z]+#", $password)) {
-            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordcap");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vCode . "&error=passwordcap");
         } elseif (!preg_match("#[a-z]+#", $password)) {
-            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordlow");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vCode . "&error=passwordlow");
         } else if ($password !== $passwordRepeat) {
-            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vcode . "&error=passwordcheck");
+            header("Location: pwreset.php?mail=" . $mail . "&vcode=" . $vCode . "&error=passwordcheck");
         } else {
 
             $sql = "UPDATE users SET pwdUsers = ?, vcodeUsers = ? WHERE vcodeUsers = ?";
@@ -455,11 +455,11 @@ class User extends DBConn
                 header("Location: index.php?error=sqlerror");
             } else {
                 $str = rand();
-                $vcodereplace = hash("sha256", $str);
+                $vCodeReplace = hash("sha256", $str);
                 //Send account activation email
                 // Hash password for security
                 $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-                mysqli_stmt_bind_param($stmt, "sss", $hashedPwd, $vcodereplace, $vcode);
+                mysqli_stmt_bind_param($stmt, "sss", $hashedPwd, $vCodeReplace, $vCode);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
@@ -470,10 +470,10 @@ class User extends DBConn
     protected function userLogIn()
     {
         $conn = $this->Connection();
-        $mailuid = mysqli_real_escape_string($conn, $_POST['mailuid']);
+        $mailUid = mysqli_real_escape_string($conn, $_POST['mailuid']);
         $password = mysqli_real_escape_string($conn, $_POST['pwd']);
         // check for empty fields
-        if (empty($mailuid) || empty($password)) {
+        if (empty($mailUid) || empty($password)) {
             header("Location: index.php?error=emptyfield");
             exit();
         } else {
@@ -484,7 +484,7 @@ class User extends DBConn
                 header("Location: index.php?error=sqlerror");
                 exit();
             } else {
-                mysqli_stmt_bind_param($stmt, "ss", $mailuid, $mailuid);
+                mysqli_stmt_bind_param($stmt, "ss", $mailUid, $mailUid);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
                 if ($row = mysqli_fetch_assoc($result)) {
