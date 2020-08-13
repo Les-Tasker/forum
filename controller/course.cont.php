@@ -9,9 +9,9 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     //Check if Campus parameter is set in URL
     if ($_GET['campus']) {
         $Course = new CourseHandler;
-        $CourseList = $Course->Get_courses_Handler();
+        $CourseList = $Course->getCoursesHandler();
         $Campus = new CampusHandler;
-        $CampusList = $Campus->Get_campus_Handler();
+        $CampusList = $Campus->getCampusHandler();
         //create array to store object values
         $List = [];
         //loop object and add values to array

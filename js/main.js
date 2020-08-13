@@ -14,17 +14,17 @@ function cover2() {
   var element = document.getElementById("upload-form-id2");
   element.classList.remove("animate");
 }
-function topicnew() {
+function topicNew() {
   var element = document.getElementById("postnewtopic");
   element.classList.remove("hidden");
 }
-function topicnew2() {
+function topicNew2() {
   var element = document.getElementById("postnewtopic");
 
   element.classList.add("hidden");
 }
 
-function bioedit() {
+function bioEdit() {
   var element = document.getElementById("bio-form");
   var element1 = document.getElementById("user-bio");
   var element2 = document.getElementById("edit-profile");
@@ -32,7 +32,7 @@ function bioedit() {
   element1.classList.add("hidden");
   element2.classList.add("hidden");
 }
-function biocancel() {
+function bioCancel() {
   var element = document.getElementById("bio-form");
   var element1 = document.getElementById("user-bio");
   var element2 = document.getElementById("edit-profile");
@@ -72,7 +72,7 @@ function editTopicCancel($topicid) {
   element.classList.remove("hidden");
   element1.classList.add("hidden");
 }
-function messagesend() {
+function messageSend() {
   var element1 = document.getElementById("send-message");
   var element2 = document.getElementById("left");
   var element3 = document.getElementById("right");
@@ -80,7 +80,7 @@ function messagesend() {
   element2.classList.add("hidden");
   element3.classList.add("hidden");
 }
-function messagecancel() {
+function messageCancel() {
   var element1 = document.getElementById("send-message");
   var element2 = document.getElementById("left");
   var element3 = document.getElementById("right");

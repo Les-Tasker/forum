@@ -4,7 +4,7 @@ class Campus extends DBConn
 {
 
 
-    protected function Get_campus()
+    protected function getCampus()
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM campus;";
@@ -15,7 +15,7 @@ class Campus extends DBConn
             return $result;
         }
     }
-    protected function Campus_topic_count($campusName)
+    protected function campusTopicCount($campusName)
     {
         // A Topic SELECT query in Course class as it is more relevant
         // It queries amount of topics in the Course category of the forum

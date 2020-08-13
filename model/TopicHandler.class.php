@@ -5,54 +5,54 @@ class TopicHandler extends Topic
 {
 
 
-    public function Set_new_topic_Handler()
+    public function setNewTopicHandler()
     {
-        $TopicHandler = $this->Set_new_topic();
+        $TopicHandler = $this->setNewTopic();
         return $TopicHandler;
     }
-    public function Campus_topic_count_Handler($campusName)
+    public function campusTopicCountHandler($campusName)
     {
-        $TopicHandler = $this->Campus_topic_count($campusName);
+        $TopicHandler = $this->campusTopicCount($campusName);
         return $TopicHandler;
     }
-    public function Get_topic_list_Handler($courseName, $campusName, $categoryName)
+    public function getTopicListHandler($courseName, $campusName, $categoryName)
     {
-        $TopicHandler = $this->Get_topic_list($courseName, $campusName, $categoryName);
+        $TopicHandler = $this->getTopicList($courseName, $campusName, $categoryName);
         return $TopicHandler;
     }
-    public function Get_topic_by_id_Handler($id)
+    public function getTopicByIdHandler($id)
     {
-        $TopicHandler = $this->Get_topic_by_id($id);
+        $TopicHandler = $this->getTopicById($id);
         return $TopicHandler;
     }
-    public function Get_aux_topic_Handler($aux)
+    public function getAuxTopicHandler($aux)
     {
-        $TopicHandler = $this->Get_aux_topic($aux);
+        $TopicHandler = $this->getAuxTopic($aux);
         return $TopicHandler;
     }
-    public function Topic_quote_Handler()
+    public function topicQuoteHandler()
     {
-        $TopicHandler = $this->Topic_quote();
+        $TopicHandler = $this->topicQuote();
         return $TopicHandler;
     }
-    public function Topic_quote_process_Handler($id)
+    public function topicQuoteProcessHandler($id)
     {
-        $TopicHandler = $this->Topic_quote_process($id);
+        $TopicHandler = $this->topicQuoteProcess($id);
         return $TopicHandler;
     }
-    public function Topic_edit_Handler()
+    public function topicEditHandler()
     {
-        $TopicHandler = $this->Topic_edit();
+        $TopicHandler = $this->topicEdit();
         return $TopicHandler;
     }
-    public function Topic_delete_Handler()
+    public function topicDeleteHandler()
     {
-        $TopicHandler = $this->Topic_delete();
+        $TopicHandler = $this->topicDelete();
         return $TopicHandler;
     }
-    public function Search_result_Handler($search)
+    public function searchResultHandler($search)
     {
-        $TopicHandler = $this->Search_result($search);
+        $TopicHandler = $this->searchResult($search);
         return $TopicHandler;
     }
 }

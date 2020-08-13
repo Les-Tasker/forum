@@ -1,7 +1,7 @@
-<?php function Display_Profile()
+<?php function displayProfile()
 {
     $User = new UserHandler;
-    $User->Get_user_info_by_id_Handler($_SESSION['userId']);
+    $User->getUserInfoByIdHandler($_SESSION['userId']);
 ?>
 <div class="profile-container">
     <div class="profile-banner">
@@ -55,14 +55,14 @@
         </div>
         <div class="profile-container-right">
             <div class="profile-bio">
-                <h2>About me<img id="edit-profile" src="img/edit.png" alt="Edit Bio" onclick="bioedit()" />
+                <h2>About me<img id="edit-profile" src="img/edit.png" alt="Edit Bio" onclick="bioEdit()" />
                     <hr>
                 </h2>
                 <p id="user-bio"><?php echo nl2br($User->Userbio) ?></p>
                 <form action="profile.php" method="post" id="bio-form" class="hidden">
                     <textarea name="bio" id="bio-form-textarea" cols="30" rows="10"></textarea>
                     <div>
-                        <button class="bio-cancel" name="bio-cancel" onclick="biocancel()">Cancel</button>
+                        <button class="bio-cancel" name="bio-cancel" onclick="bioCancel()">Cancel</button>
                         <button class="bio-submit" type="submit" name="bio-submit">Save</button>
                     </div>
                 </form>

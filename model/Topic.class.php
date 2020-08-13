@@ -5,7 +5,7 @@ class Topic extends DBConn
 {
 
 
-    protected function Set_new_topic()
+    protected function setNewTopic()
     {
         $conn = $this->Connection();
         // Fetch signup form info
@@ -47,7 +47,7 @@ class Topic extends DBConn
         }
         // close connection to DB
     }
-    protected function Campus_topic_count($campusName)
+    protected function campusTopicCount($campusName)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM topics WHERE campus = '$campusName'";
@@ -55,7 +55,7 @@ class Topic extends DBConn
         $resultCheck = mysqli_num_rows($result);
         return $resultCheck;
     }
-    protected function Get_topic_list($courseName, $campusName, $categoryName)
+    protected function getTopicList($courseName, $campusName, $categoryName)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM topics WHERE course='$courseName' AND campus='$campusName' AND category='$categoryName' ORDER BY recent DESC";
@@ -65,7 +65,7 @@ class Topic extends DBConn
             return $result;
         }
     }
-    protected function Get_topic_by_id($id)
+    protected function getTopicById($id)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM topics where id='$id'";
@@ -75,7 +75,7 @@ class Topic extends DBConn
             return $result;
         }
     }
-    protected function Get_aux_topic($aux)
+    protected function getAuxTopic($aux)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM topics WHERE aux = '$aux'";
@@ -85,14 +85,14 @@ class Topic extends DBConn
             return $result;
         }
     }
-    protected function Topic_quote()
+    protected function topicQuote()
     {
         $Url = strval($_SERVER['HTTP_REFERER'] . '&quote=none');
         $pos = strpos($Url, "&quote");
         $Url = substr($Url, 0, $pos);
         header("location:" . $Url . "&quotetopic=" . $_POST['commentid'] . "&author=" . $_POST['author'] . "#comment-body");
     }
-    protected function Topic_quote_process($id)
+    protected function topicQuoteProcess($id)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM topics WHERE id= '$id'";
@@ -115,7 +115,7 @@ class Topic extends DBConn
             echo htmlspecialchars($body);
         }
     }
-    protected function Topic_edit()
+    protected function topicEdit()
     {
         $conn = $this->Connection();
         $id = $_POST['topic-id'];
@@ -134,7 +134,7 @@ class Topic extends DBConn
             header("location:" . $_SERVER['HTTP_REFERER']);
         }
     }
-    protected function Topic_delete()
+    protected function topicDelete()
     {
         $conn = $this->Connection();
         $id = $_POST['commentid'];
@@ -149,7 +149,7 @@ class Topic extends DBConn
         }
         $conn->close();
     }
-    protected function Search_result($search)
+    protected function searchResult($search)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM topics WHERE author LIKE '%$search%' OR title LIKE '%$search%' OR body LIKE '%$search%' OR campus LIKE '%$search%' OR course LIKE '%$search%'";

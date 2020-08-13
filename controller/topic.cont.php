@@ -6,35 +6,35 @@ require_once 'model/UserHandler.class.php';
 require_once 'view/topic.view.php';
 if (isset($_POST['comment-submit'])) {
     $NewComment = new CommentHandler;
-    $NewComment->Set_topic_comment_Handler();
+    $NewComment->setTopicCommentHandler();
 } else if (isset($_POST['topic-quote-submit'])) {
     $NewTopic = new TopicHandler;
-    $NewTopic->Topic_quote_Handler();
+    $NewTopic->topicQuoteHandler();
 } else if (isset($_POST['topic-edit-submit'])) {
     $NewTopic = new TopicHandler;
-    $NewTopic->Topic_edit_Handler();
+    $NewTopic->topicEditHandler();
 } else if (isset($_POST['topic-delete-submit'])) {
     $NewTopic = new TopicHandler;
-    $NewTopic->Topic_delete_Handler();
+    $NewTopic->topicDeleteHandler();
 } else if (isset($_POST['comment-quote-submit'])) {
     $NewComment = new CommentHandler;
-    $NewComment->Comment_quote_Handler();
+    $NewComment->commentQuoteHandler();
 } else if (isset($_POST['comment-edit-submit'])) {
     $NewComment = new CommentHandler;
-    $NewComment->Comment_edit_Handler();
+    $NewComment->commentEditHandler();
 } else if (isset($_POST['comment-delete-submit'])) {
     $NewComment = new CommentHandler;
-    $NewComment->Comment_delete_Handler();
+    $NewComment->commentDeleteHandler();
 } else if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     if (isset($_GET['id']) && isset($_GET['campus']) && isset($_GET['course']) && isset($_GET['category'])) {
         $NewTopic = new TopicHandler;
         $NewComment = new CommentHandler;
-        $Topic = $NewTopic->Get_topic_by_id_Handler($_GET['id']);
-        $Comment = $NewComment->Get_comment_by_id_Handler($_GET['id']);
+        $Topic = $NewTopic->getTopicByIdHandler($_GET['id']);
+        $Comment = $NewComment->getCommentByIdHandler($_GET['id']);
         displayTopic($Topic, $Comment);
     } else if (isset($_GET['aux'])) {
         $NewTopic = new TopicHandler;
-        $aux = $NewTopic->Get_aux_topic_Handler($_GET['aux']);
+        $aux = $NewTopic->GetAuxTopicHandler($_GET['aux']);
         displayAux($aux);
         //Adds reply box to specific auxilary topics
         // if (isset($_GET['id'])) {

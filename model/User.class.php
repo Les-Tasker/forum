@@ -23,7 +23,7 @@ class User extends DBConn
     public $Userverified;
 
     //Query database for Users by ID
-    protected function Get_user_info_by_id($id)
+    protected function getUserInfoById($id)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM users WHERE idUsers = $id";
@@ -44,7 +44,7 @@ class User extends DBConn
         $this->Userverified = $row['verifiedUsers'];
     }
 
-    protected function Get_user_info_by_email($email)
+    protected function getUserInfoByEmail($email)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM users where emailUsers='$email'";
@@ -66,7 +66,7 @@ class User extends DBConn
     }
 
     //Query database for Users by Username
-    protected function Get_user_info_by_username($uid)
+    protected function getUserInfoByUsername($uid)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM users WHERE uidUsers = '$uid'";
@@ -86,7 +86,7 @@ class User extends DBConn
         $this->Userid = $row['idUsers'];
         $this->Userverified = $row['verifiedUsers'];
     }
-    protected function Set_user_bio($text, $id)
+    protected function setUserBio($text, $id)
     {
         $conn = $this->Connection();
         $text = htmlspecialchars($text);
@@ -117,7 +117,7 @@ class User extends DBConn
         }
     }
 
-    protected function Display_unread_message($user)
+    protected function displayUnreadMessage($user)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM messages WHERE toID = $user AND msgstatus = 'DELIVERED'";
@@ -129,7 +129,7 @@ class User extends DBConn
             echo '0';
         }
     }
-    protected function Verify_new_user($email, $vcode)
+    protected function verifyNewUser($email, $vcode)
     {
         $conn = $this->Connection();
         $sql = "UPDATE users SET verifiedUsers='TRUE' WHERE  emailUsers=? AND vcodeUsers=?";
@@ -146,7 +146,7 @@ class User extends DBConn
         }
     }
 
-    protected function Set_user_profile_image()
+    protected function SetUserProfileImage()
     {
 
         $conn = $this->Connection();
@@ -211,7 +211,7 @@ class User extends DBConn
             header("Location: profile.php?error=notallowed");
         }
     }
-    protected function Set_user_cover_image()
+    protected function setUserCoverImage()
     {
         $conn = $this->Connection();
         $id = $_SESSION['userId'];
@@ -262,7 +262,7 @@ class User extends DBConn
             header("Location: profile.php?error=notallowed");
         }
     }
-    protected function Signup_new_user()
+    protected function signupNewUser()
     {
         $conn = $this->Connection();
         // Fetch signup form info
@@ -393,7 +393,7 @@ class User extends DBConn
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
     }
-    protected function User_forgot_password()
+    protected function userForgotPassword()
     {
         $conn = $this->Connection();
         $email = $_POST['email'];
@@ -430,7 +430,7 @@ class User extends DBConn
             header("Location: forgotpw.php?pwreseterror");
         }
     }
-    protected function Update_user_password()
+    protected function updateUserPassword()
     {
         $conn = $this->Connection();
         $vcode = $_POST['vcode'];
@@ -467,7 +467,7 @@ class User extends DBConn
             }
         }
     }
-    protected function User_log_in()
+    protected function userLogIn()
     {
         $conn = $this->Connection();
         $mailuid = mysqli_real_escape_string($conn, $_POST['mailuid']);
@@ -522,7 +522,7 @@ class User extends DBConn
             }
         }
     }
-    protected function User_log_out()
+    protected function userLogOut()
     {
         session_start();
         session_unset();

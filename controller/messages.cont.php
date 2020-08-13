@@ -6,7 +6,7 @@ if (isset($_POST['message-submit'])) {
     //create new object
     $Message = new MessageHandler;
     //execute object method
-    $Message->Send_message_from_profile_Handler();
+    $Message->sendMessageFromProfileHandler();
 }
 //if new message submitted from inbox 
 else if (isset($_POST['message-reply-submit'])) {
@@ -15,7 +15,7 @@ else if (isset($_POST['message-reply-submit'])) {
     //create new object
     $Message = new MessageHandler;
     //execute object method
-    $Message->Reply_inbox_Handler();
+    $Message->ReplyInboxHandler();
 }
 //if no forms submitted, check for valid logged in user
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {

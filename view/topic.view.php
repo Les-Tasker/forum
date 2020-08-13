@@ -61,7 +61,7 @@ function displayAux($aux)
                 $posterComment = nl2br($row['body']);
                 $posterDate = $row['posted'];
                 $User = new UserHandler;
-                $User->Get_user_info_by_username_Handler($poster); ?>
+                $User->getUserInfoByUsernameHandler($poster); ?>
         <div class="forum-topic-post" id="<?php echo 'post-' . $commentid ?>">
             <div class="forum-topic-post-poster">
                 <img class="comment-img" src="uploads/<?php echo $User->Userimage ?>" />
@@ -103,10 +103,10 @@ function displayAux($aux)
             <textarea name="comment-body" id="comment-body" rows="3"
                 placeholder="Post something..."><?php if (isset($_GET['quotecomment'])) {
                                                                                                                 $NewCommentQuote = new CommentHandler;
-                                                                                                                $NewCommentQuote->Comment_quote_process_Handler($_GET['quotecomment']);
+                                                                                                                $NewCommentQuote->commentQuoteProcessHandler($_GET['quotecomment']);
                                                                                                             } elseif (isset($_GET['quotetopic'])) {
                                                                                                                 $NewTopicQuote = new TopicHandler;
-                                                                                                                $NewTopicQuote->Topic_quote_process_Handler($_GET['quotetopic']);
+                                                                                                                $NewTopicQuote->topicQuoteProcessHandler($_GET['quotetopic']);
                                                                                                             } ?></textarea>
 
             <button id="comment-body-submit" type="submit" name="comment-submit">Post</button>
@@ -214,7 +214,7 @@ function displayAux($aux)
                                 $posterComment = nl2br($row['body']);
                                 $posterDate = $row['posted'];
                                 $User = new UserHandler;
-                                $User->Get_user_info_by_username_Handler($poster); ?>
+                                $User->getUserInfoByUsernameHandler($poster); ?>
             <div class="forum-topic-post" id="<?php echo 'post-' . $commentid ?>">
                 <div class="forum-topic-post-poster">
                     <img class="comment-img" src="uploads/<?php echo $User->Userimage ?>" />
@@ -277,10 +277,10 @@ function displayAux($aux)
                 <textarea name="comment-body" id="comment-body" rows="3"
                     placeholder="Post something..."><?php if (isset($_GET['quotecomment'])) {
                                                                                                                             $NewCommentQuote = new CommentHandler;
-                                                                                                                            $NewCommentQuote->Comment_quote_process_Handler($_GET['quotecomment']);
+                                                                                                                            $NewCommentQuote->commentQuoteProcessHandler($_GET['quotecomment']);
                                                                                                                         } else if (isset($_GET['quotetopic'])) {
                                                                                                                             $NewTopicQuote = new TopicHandler;
-                                                                                                                            $NewTopicQuote->Topic_quote_process_Handler($_GET['quotetopic']);
+                                                                                                                            $NewTopicQuote->topicQuoteProcessHandler($_GET['quotetopic']);
                                                                                                                         } ?></textarea>
                 <button id="comment-body-submit" type="submit" name="comment-submit">Post</button>
             </form>

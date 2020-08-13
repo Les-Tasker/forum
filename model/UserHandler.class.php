@@ -11,74 +11,74 @@ class UserHandler extends User
 {
 
 
-    public function Get_user_info_by_id_Handler($id)
+    public function getUserInfoByIdHandler($id)
     {
-        $UserHandler = $this->Get_user_info_by_id($id);
+        $UserHandler = $this->getUserInfoById($id);
 
         return $UserHandler;
     }
 
-    public function Get_user_info_by_email_Handler($email)
+    public function getUserInfoByEmailHandler($email)
     {
-        $UserHandler = $this->Get_user_info_by_email($email);
+        $UserHandler = $this->getUserInfoByEmail($email);
         return $UserHandler;
     }
 
-    public function Get_user_info_by_username_Handler($uid)
+    public function getUserInfoByUsernameHandler($uid)
     {
-        $UserHandler = $this->Get_user_info_by_username($uid);
+        $UserHandler = $this->getUserInfoByUsername($uid);
         return $UserHandler;
     }
-    public function Set_user_bio_Handler($text, $id)
+    public function setUserBioHandler($text, $id)
     {
-        $UserHandler = $this->Set_user_bio($text, $id);
+        $UserHandler = $this->setUserBio($text, $id);
         return $UserHandler;
     }
-    public function Display_unread_message_Handler($user)
+    public function displayUnreadMessageHandler($user)
     {
-        $UserHandler = $this->Display_unread_message($user);
+        $UserHandler = $this->displayUnreadMessage($user);
         return $UserHandler;
     }
-    public function Verify_new_user_Handler($email, $vcode)
+    public function verifyNewUserHandler($email, $vcode)
     {
-        $UserHandler = $this->Verify_new_user($email, $vcode);
-        return $UserHandler;
-    }
-
-    public function Set_user_profile_image_Handler()
-    {
-        $UserHandler = $this->Set_user_profile_image();
+        $UserHandler = $this->verifyNewUser($email, $vcode);
         return $UserHandler;
     }
 
-    public function Set_user_cover_image_Handler()
+    public function setUserProfileImageHandler()
     {
-        $UserHandler = $this->Set_user_cover_image();
+        $UserHandler = $this->setUserProfileImage();
         return $UserHandler;
     }
-    public function Signup_new_user_Handler()
+
+    public function setUserCoverImageHandler()
     {
-        $UserHandler = $this->Signup_new_user();
+        $UserHandler = $this->setUserCoverImage();
         return $UserHandler;
     }
-    public function User_forgot_password_Handler()
+    public function signupNewUserHandler()
     {
-        $UserHandler = $this->User_forgot_password();
+        $UserHandler = $this->signupNewUser();
         return $UserHandler;
     }
-    public function Update_user_password_Handler()
+    public function userForgotPasswordHandler()
     {
-        $UserHandler = $this->Update_user_password();
+        $UserHandler = $this->userForgotPassword();
         return $UserHandler;
     }
-    public function User_log_in_Handler()
+    public function updateUserPasswordHandler()
     {
-        $UserHandler = $this->User_log_in();
+        $UserHandler = $this->updateUserPassword();
         return $UserHandler;
     }
-    public function User_log_out_Handler()
+    public function userLogInHandler()
     {
-        $UserHandler = $this->User_log_out();
+        $UserHandler = $this->userLogIn();
+        return $UserHandler;
+    }
+    public function userLogOutHandler()
+    {
+        $UserHandler = $this->userLogOut();
         return $UserHandler;
     }
 }

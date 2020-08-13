@@ -9,12 +9,12 @@ if (isset($_POST['login-submit'])) {
     //create new object
     $NewUser = new UserHandler;
     //execute object login method
-    $NewUser->User_log_in_Handler();
+    $NewUser->userLogInHandler();
 }
 //if logout form submitted
 if (isset($_POST['logout-submit'])) {
     //create new object
     $NewUser = new UserHandler;
     //execute object logout method
-    $NewUser->User_log_out_Handler();
+    $NewUser->userLogOutHandler();
 }

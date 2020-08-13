@@ -4,7 +4,7 @@ class DBConnHandler extends DBConn
 {
 
 
-    public function Connection_Handler()
+    public function connectionHandler()
     {
         $DBConnHandler = $this->Connection();
         return $DBConnHandler;

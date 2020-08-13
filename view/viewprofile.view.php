@@ -1,10 +1,9 @@
 <?php
 
-function View_profile()
+function viewProfile()
 {
-    require_once './model/User.class.php';
     $User = new UserHandler;
-    $User->Get_user_info_by_Username_Handler($_GET['author']);
+    $User->getUserInfoByUsernameHandler($_GET['author']);
 
 ?>
 <div class="profile-container">
@@ -23,7 +22,7 @@ function View_profile()
                 placeholder="Say hi to <?php echo $User->Username ?>..."></textarea>
             <div>
                 <input type="button" class="message-cancel" name="message-cancel" value="Cancel"
-                    onclick="messagecancel()"></button>
+                    onclick="messageCancel()"></button>
                 <button class="message-submit" type="submit" name="message-submit">Send</button>
             </div>
         </form>
@@ -34,7 +33,7 @@ function View_profile()
                 <h1 class="profile-info"><?php echo $User->Username ?> <img class="user-course-badge"
                         src="./img/<?php echo $User->Usercourse . ".png" ?>" alt="Profile Image" />
                 </h1>
-                <button id="send-user-message" onclick="messagesend()">Send Message <img src="./img/msg.png"
+                <button id="send-user-message" onclick="messageSend()">Send Message <img src="./img/msg.png"
                         alt=""></button>
                 <div class="profile-content">
                     <div class="profile-title">

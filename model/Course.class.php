@@ -4,7 +4,7 @@ include_once "DBConn.class.php";
 class Course extends DBConn
 {
 
-    protected function Get_courses()
+    protected function getCourses()
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM courses;";
@@ -15,7 +15,7 @@ class Course extends DBConn
         } else {
         }
     }
-    protected function Course_topic_count($campusName, $courseName)
+    protected function courseTopicCount($campusName, $courseName)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM topics WHERE campus = '$campusName' AND course ='$courseName'";

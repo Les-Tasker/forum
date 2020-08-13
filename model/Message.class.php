@@ -5,7 +5,7 @@ class Message extends DBConn
 {
 
 
-    protected function Send_message_from_profile()
+    protected function sendMessageFromProfile()
     {
         $conn = $this->Connection();
         // Fetch signup form info
@@ -54,7 +54,7 @@ class Message extends DBConn
             }
         }
     }
-    protected function Reply_inbox()
+    protected function replyInbox()
     {
         $conn = $this->Connection();
         // Fetch signup form info
@@ -95,7 +95,7 @@ class Message extends DBConn
             }
         }
     }
-    protected function Get_messages($conID)
+    protected function getMessages($conID)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM messages  WHERE conID = '$conID'";
@@ -106,7 +106,7 @@ class Message extends DBConn
             return $result;
         }
     }
-    protected function Set_msg_status($conID, $user)
+    protected function setMsgStatus($conID, $user)
     {
         $conn = $this->Connection();
         $sql = "UPDATE messages SET msgstatus = 'SEEN' WHERE conID = ? AND toID = ?";
@@ -120,7 +120,7 @@ class Message extends DBConn
             mysqli_close($conn);
         }
     }
-    protected function Get_inbox($userID)
+    protected function getInbox($userID)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM messages where toID = '$userID' OR fromID = '$userID' GROUP BY conID ORDER BY ts DESC ";
@@ -131,7 +131,7 @@ class Message extends DBConn
             return $result;
         }
     }
-    protected function Get_new_message_notification($conID, $toid)
+    protected function getNewMessageNotification($conID, $toid)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM messages where conID = $conID AND toID = $toid AND msgstatus = 'DELIVERED'";
@@ -141,7 +141,7 @@ class Message extends DBConn
             echo 'New Message';
         }
     }
-    protected function Get_recent_message($id)
+    protected function getRecentMessage($id)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM messages WHERE conID = '$id' ORDER BY ts DESC LIMIT 1";

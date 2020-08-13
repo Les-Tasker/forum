@@ -11,9 +11,9 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
         require_once 'model/CampusHandler.class.php';
         require_once 'model/CategoryHandler.class.php';
         $Course = new CourseHandler;
-        $CourseList = $Course->Get_courses_Handler();
+        $CourseList = $Course->getCoursesHandler();
         $Campus = new CampusHandler;
-        $CampusList = $Campus->Get_campus_Handler();
+        $CampusList = $Campus->getCampusHandler();
         //create array to store object values
         $CampusArray = [];
         $CourseArray = [];
@@ -28,7 +28,7 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
         if (in_array($_GET['campus'], $CampusArray) && in_array($_GET['course'], $CourseArray)) {
             //if true, display corresponding forum section
             $NewCategory = new CategoryHandler;
-            $category = $NewCategory->Get_category_Handler();
+            $category = $NewCategory->getCategoryHandler();
             displayCategory($category);
         } else {
         }

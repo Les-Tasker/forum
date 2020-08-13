@@ -4,7 +4,7 @@ include_once "DBConn.class.php";
 class Comment extends DBConn
 {
 
-    protected function Get_topic_replies($topicid)
+    protected function getTopicReplies($topicid)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM comments WHERE topicid='$topicid' ORDER BY posted DESC";
@@ -13,7 +13,7 @@ class Comment extends DBConn
         // if amount of entries in table is greater than 0, loop through entries and echo out
         echo $resultCheck;
     }
-    protected function Get_comment_by_id($id)
+    protected function getCommentById($id)
     {
         $conn = $this->Connection();
         $sql2 = "SELECT * FROM comments where topicid='$id'";
@@ -23,7 +23,7 @@ class Comment extends DBConn
             return $result2;
         }
     }
-    protected function Set_topic_comment()
+    protected function setTopicComment()
     {
         $conn = $this->Connection();
         session_start();
@@ -70,14 +70,14 @@ class Comment extends DBConn
             }
         }
     }
-    protected function Comment_quote()
+    protected function commentQuote()
     {
         $Url = strval($_SERVER['HTTP_REFERER'] . '&quote=none');
         $pos = strpos($Url, "&quote");
         $Url = substr($Url, 0, $pos);
         header("location:" . $Url . "&quotecomment=" . $_POST['commentid'] . "&author=" . $_POST['author'] . "#comment-body");
     }
-    protected function Comment_quote_process($id)
+    protected function commentQuoteProcess($id)
     {
         $conn = $this->Connection();
         $sql = "SELECT * FROM comments WHERE id= '$id'";
@@ -95,7 +95,7 @@ class Comment extends DBConn
             echo htmlspecialchars($body);
         }
     }
-    protected function Comment_edit()
+    protected function commentEdit()
     {
         $conn = $this->Connection();
         $id = $_POST['comment-id'];
@@ -114,7 +114,7 @@ class Comment extends DBConn
             header("location:" . $_SERVER['HTTP_REFERER'] . '#post-' . $id);
         }
     }
-    protected function Comment_delete()
+    protected function commentDelete()
     {
         $conn = $this->Connection();
         $id = $_POST['commentid'];

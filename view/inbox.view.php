@@ -7,16 +7,16 @@ function displayInbox($inbox)
         <?php
             if (empty($inbox)) {
             } else {
-                $NewUser = new UserHandler;
+                $newUser = new UserHandler;
                 foreach ($inbox as $row) { ?>
         <div class="forum-category">
             <img class="topic-logo" src="uploads/<?php
                                                                 if ($_SESSION['userId'] == $row['fromID']) {
-                                                                    $NewUser->Get_user_info_by_id_Handler($row['toID']);
-                                                                    echo $NewUser->Userimage;
+                                                                    $newUser->getUserInfoByIdHandler($row['toID']);
+                                                                    echo $newUser->Userimage;
                                                                 } else {
-                                                                    $NewUser->Get_user_info_by_id_Handler($row['fromID']);
-                                                                    echo $NewUser->Userimage;
+                                                                    $newUser->getUserInfoByIdHandler($row['fromID']);
+                                                                    echo $newUser->Userimage;
                                                                 } ?>">
             <div class="topic-title-desc">
                 <a class="topic-title" href="messages.php?toID=<?php
@@ -26,20 +26,20 @@ function displayInbox($inbox)
                                                                                 echo $row['fromID'];
                                                                             } ?>&conID=<?php echo $row['conID'] ?>">
                     <?php if ($_SESSION['userId'] == $row['fromID']) {
-                                    $NewUser->Get_user_info_by_id_Handler($row['toID']);
-                                    echo $NewUser->Username;
+                                    $newUser->getUserInfoByIdHandler($row['toID']);
+                                    echo $newUser->Username;
                                 } else {
-                                    $NewUser->Get_user_info_by_id_Handler($row['fromID']);
-                                    echo $NewUser->Username;
+                                    $newUser->getUserInfoByIdHandler($row['fromID']);
+                                    echo $newUser->Username;
                                 } ?> </a>
             </div>
             <div class="topic-post-count">
-                <?php $NewMessage = new MessageHandler;
-                            $NewMessage->Get_new_message_notification_Handler($row['conID'], $_SESSION['userId']);
-                            $MostRecent = $NewMessage->Get_recent_message_Handler($row['conID']) ?>
+                <?php $newMessage = new MessageHandler;
+                            $newMessage->getNewMessageNotificationHandler($row['conID'], $_SESSION['userId']);
+                            $mostRecent = $newMessage->getRecentMessageHandler($row['conID']) ?>
 
                 <h6 class="topic-post-recent">Last
-                    Message:<br><?php echo $MostRecent ?></h6>
+                    Message:<br><?php echo $mostRecent ?></h6>
             </div>
         </div>
         <?php }

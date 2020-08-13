@@ -4,14 +4,14 @@ include_once "Category.class.php";
 class CategoryHandler extends Category
 {
 
-    public function Get_category_Handler()
+    public function getCategoryHandler()
     {
-        $CategoryHandler = $this->Get_category();
+        $CategoryHandler = $this->getCategory();
         return $CategoryHandler;
     }
-    public function Category_topic_count_Handler($campusName, $courseName, $categoryName)
+    public function categoryTopicCountHandler($campusName, $courseName, $categoryName)
     {
-        $CategoryHandler = $this->Category_topic_count($campusName, $courseName, $categoryName);
+        $CategoryHandler = $this->categoryTopicCount($campusName, $courseName, $categoryName);
         return $CategoryHandler;
     }
 }

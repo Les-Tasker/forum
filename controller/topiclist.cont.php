@@ -3,7 +3,7 @@
 require_once "model/TopicHandler.class.php";
 if (isset($_POST['topic-submit'])) {
     $NewTopic = new TopicHandler;
-    $NewTopic->Set_new_topic_Handler();
+    $NewTopic->setNewTopicHandler();
 }
 if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     if ($_GET['category'] && $_GET['campus'] && $_GET['course']) {
@@ -12,11 +12,11 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
         require_once 'model/CategoryHandler.class.php';
         require_once "view/topiclist.view.php";
         $Course = new CourseHandler;
-        $CourseList = $Course->Get_courses_Handler();
+        $CourseList = $Course->getCoursesHandler();
         $Campus = new CampusHandler;
-        $CampusList = $Campus->Get_campus_Handler();
+        $CampusList = $Campus->getCampusHandler();
         $Category = new CategoryHandler;
-        $CategoryList = $Category->Get_category_Handler();
+        $CategoryList = $Category->getCategoryHandler();
         //create array to store object values
         $CampusArray = [];
         $CourseArray = [];
@@ -33,8 +33,8 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
         }
         if (in_array($_GET['campus'], $CampusArray) && in_array($_GET['course'], $CourseArray) && in_array($_GET['category'], $CategoryArray)) {
             $NewTopic = new TopicHandler;
-            $topic = $NewTopic->Get_topic_list_Handler($_GET['course'], $_GET['campus'], $_GET['category']);
-            Display_topic_list($topic);
+            $topic = $NewTopic->getTopicListHandler($_GET['course'], $_GET['campus'], $_GET['category']);
+            displayTopicList($topic);
         } else {
             // if false, user has attempted to manipulate URL or followed a bad link
             // redirect to error 404 page

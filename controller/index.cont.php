@@ -7,10 +7,10 @@ if (isset($_SESSION['userId']) && ($_SESSION['userVerified'] == "TRUE")) {
     //create new object
     $NewCampus = new CampusHandler;
     //execute object method
-    $campus = $NewCampus->Get_campus_Handler();
+    $campus = $NewCampus->getCampusHandler();
     //load view and display
     require_once 'view/index.view.php';
-    Display_campus($campus);
+    displayCampus($campus);
 } else {
     //if user is not logged in or user is logged in but not verified
     //run loggedOut function which prompts user to login / check verification email

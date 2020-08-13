@@ -4,39 +4,39 @@ include_once "Comment.class.php";
 class CommentHandler extends Comment
 {
 
-    public function Get_topic_replies_Handler($topicid)
+    public function getTopicRepliesHandler($topicid)
     {
-        $CommentHandler = $this->Get_topic_replies($topicid);
+        $CommentHandler = $this->getTopicReplies($topicid);
         return $CommentHandler;
     }
-    public function Get_comment_by_id_Handler($id)
+    public function getCommentByIdHandler($id)
     {
-        $CommentHandler = $this->Get_comment_by_id($id);
+        $CommentHandler = $this->getCommentById($id);
         return $CommentHandler;
     }
-    public function Set_topic_comment_Handler()
+    public function setTopicCommentHandler()
     {
-        $CommentHandler = $this->Set_topic_comment();
+        $CommentHandler = $this->setTopicComment();
         return $CommentHandler;
     }
-    public function Comment_quote_Handler()
+    public function commentQuoteHandler()
     {
-        $CommentHandler = $this->Comment_quote();
+        $CommentHandler = $this->commentQuote();
         return $CommentHandler;
     }
-    public function Comment_quote_process_Handler($id)
+    public function commentQuoteProcessHandler($id)
     {
-        $CommentHandler = $this->Comment_quote_process($id);
+        $CommentHandler = $this->commentQuoteProcess($id);
         return $CommentHandler;
     }
-    public function Comment_edit_Handler()
+    public function commentEditHandler()
     {
-        $CommentHandler = $this->Comment_edit();
+        $CommentHandler = $this->commentEdit();
         return $CommentHandler;
     }
-    public function Comment_delete_Handler()
+    public function commentDeleteHandler()
     {
-        $CommentHandler = $this->Comment_delete();
+        $CommentHandler = $this->commentDelete();
         return $CommentHandler;
     }
 }

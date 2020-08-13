@@ -1,10 +1,10 @@
 <?php
 
 $DBConn = new DBConnHandler;
-$conn = $DBConn->Connection_Handler();
+$conn = $DBConn->connectionHandler();
 $search = mysqli_real_escape_string($conn, $_POST['search-string']);
 $NewSearch = new TopicHandler;
-$searchResult = $NewSearch->Search_result_Handler($search);
+$searchResult = $NewSearch->searchResultHandler($search);
 echo '<div class="outline">';
 if (!empty($searchResult)) {
     $GetReplies = new CommentHandler;
@@ -19,7 +19,7 @@ if (!empty($searchResult)) {
 
     </div>
     <div class="topic-post-count">
-        <h6>Replies: <?php $GetReplies->Get_topic_replies_Handler($row['id']) ?></h6>
+        <h6>Replies: <?php $GetReplies->getTopicRepliesHandler($row['id']) ?></h6>
         <h6> Most Recent<br>
             <?php
                     if (!empty($row['recent'])) {

@@ -5,39 +5,39 @@ class MessageHandler extends Message
 {
 
 
-    public function Send_message_from_profile_Handler()
+    public function sendMessageFromProfileHandler()
     {
-        $MessageHandler = $this->Send_message_from_profile();
+        $MessageHandler = $this->sendMessageFromProfile();
         return $MessageHandler;
     }
-    public function Reply_inbox_Handler()
+    public function replyInboxHandler()
     {
-        $MessageHandler = $this->Reply_inbox();
+        $MessageHandler = $this->replyInbox();
         return $MessageHandler;
     }
-    public function Get_messages_Handler($conID)
+    public function getMessagesHandler($conID)
     {
-        $MessageHandler = $this->Get_messages($conID);
+        $MessageHandler = $this->getMessages($conID);
         return $MessageHandler;
     }
-    public function Set_msg_status_Handler($conID, $user)
+    public function setMsgStatusHandler($conID, $user)
     {
-        $MessageHandler = $this->Set_msg_status($conID, $user);
+        $MessageHandler = $this->setMsgStatus($conID, $user);
         return $MessageHandler;
     }
-    public function Get_inbox_Handler($userID)
+    public function getInboxHandler($userID)
     {
-        $MessageHandler = $this->Get_inbox($userID);
+        $MessageHandler = $this->getInbox($userID);
         return $MessageHandler;
     }
-    public function Get_new_message_notification_Handler($conID, $toid)
+    public function getNewMessageNotificationHandler($conID, $toid)
     {
-        $MessageHandler = $this->Get_new_message_notification($conID, $toid);
+        $MessageHandler = $this->getNewMessageNotification($conID, $toid);
         return $MessageHandler;
     }
-    public function Get_recent_message_Handler($id)
+    public function getRecentMessageHandler($id)
     {
-        $MessageHandler = $this->Get_recent_message($id);
+        $MessageHandler = $this->getRecentMessage($id);
         return $MessageHandler;
     }
 }

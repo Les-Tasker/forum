@@ -38,7 +38,7 @@ function displayCategory($category)
 
             </div>
             <div class="topic-post-count">Topics:
-                <?php $CategoryCount->Category_topic_count_Handler($_GET['campus'], $_GET['course'], $row['category']) ?>
+                <?php $CategoryCount->categoryTopicCountHandler($_GET['campus'], $_GET['course'], $row['category']) ?>
             </div>
         </div>
         <?php

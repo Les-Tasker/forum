@@ -40,7 +40,7 @@
                         <a class="dropdown-item" href="profile.php">Profile <img src="img/profile.png"></a>
                         <a class="dropdown-item" href="inbox.php">
                             Inbox <img src="img/inbox.png"> <span
-                                class="unread"><?php $ShowUnread->Display_unread_message_Handler($_SESSION['userId']) ?></span>
+                                class="unread"><?php $ShowUnread->displayUnreadMessageHandler($_SESSION['userId']) ?></span>
                         </a>
                         <a class="dropdown-item" href="#">
                             <form action="header.php" method="post">

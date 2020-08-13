@@ -3,12 +3,12 @@
 require 'header.php';
 if (isset($_POST['submit'])) {
     $NewUser = new UserHandler;
-    $NewUser->Update_user_password_Handler();
+    $NewUser->updateUserPasswordHandler();
 }
 if (isset($_GET['mail']) && (isset($_GET['vcode']))) {
     $email = $_GET['mail'];
     $NewUser = new UserHandler;
-    $NewUser->Get_user_info_by_email_Handler($email);
+    $NewUser->getUserInfoByEmailHandler($email);
     if ($_GET['vcode'] == $NewUser->Uservcode) {
         require "view/pwreset.view.php";
     } else {

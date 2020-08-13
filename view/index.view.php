@@ -1,5 +1,5 @@
 <?php
-function Display_campus($campus)
+function displayCampus($campus)
 {
 ?>
 
@@ -47,7 +47,7 @@ function Display_campus($campus)
             } else {
 
                 foreach ($campus as $row) {
-                    $CampusTopicCount = new TopicHandler;
+                    $campusTopicCount = new TopicHandler;
                     $campus =  $row['campus'];
             ?>
         <div class="forum-category ">
@@ -58,7 +58,7 @@ function Display_campus($campus)
 
             </div>
             <div class="topic-post-count">Topics:
-                <?php echo $CampusTopicCount->Campus_topic_count_Handler($row['campus']) ?>
+                <?php echo $campusTopicCount->campusTopicCountHandler($row['campus']) ?>
             </div>
         </div>
         <?php
